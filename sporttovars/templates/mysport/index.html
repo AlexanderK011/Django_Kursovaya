@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+{%block header%}
+    <!-- header -->
+    <header>
+        <div class="head1">
+            <p>Garrison’sWell</p>
+        </div>
+        <div class="head2">
+            <div class="nullblock10">
+                <div class="burger">
+                <span></span>  
+                <span></span>
+                <span></span>
+                </div>
+                <ul class="nav_menu" id="nav_menuid">
+                    <a id ='categor_nav1'><li>Главная</li> <p>></p></a>
+                    <div class="open_subcateg" id="categor_nav1">
+                        <a><li>Машины</li><p>></p></a>
+                        <a><li>Машины</li><p>></p></a>
+                        <a><li>Машины</li><p>></p></a>
+                    </div>
+                    <a id ='categor_nav2'><li>Машины</li><p>></p></a>
+                    <div class="open_subcateg" id="categor_nav2">
+                        <a><li>Машины</li><p>></p></a>
+                        <a><li>Машины</li><p>></p></a>
+                        <a><li>Машины</li><p>></p></a>
+                    </div>
+                    <a id ='categor_nav'><li>Контакты</li><p>></p></a>
+                    <a><li>Галерея</li><p>></p></a>
+                    <a><li>Рейтинги</li><p>></p></a>
+                    <a><li>Категории</li><p>></p></a>
+                </ul>
+            </div>
+        <div class="catalogop">
+            <p class="catalog">Каталог</p>
+            <div class="dropdown-content">
+                <div class="cats">
+                <a id ='cat_1' href="#">Ссылка 1</a>
+                <a id ='cat_2' href="#">Ссылка 2</a>
+                <a id ='cat_3' href="#">Ссылка 3</a>
+            </div>
+            <div class="subcat_block" id ='cat_1'>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+        </div>
+        <div class="subcat_block" id ='cat_2'>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+            <div class="subcuts">
+                <h4>Главная ссылка</h4>
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+                <a href="#">Ссылка 4</a>
+                <a href="#">Ссылка 5</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+            </div>
+            <div class="subcat_block" id ='cat_3'>
+                <div class="subcuts">
+                    <h4>Главная ссылка</h4>
+                    <a href="#">Ссылка 1</a>
+                    <a href="#">Ссылка 2</a>
+                    <a href="#">Ссылка 3</a>
+                    <a href="#">Ссылка 4</a>
+                    <a href="#">Ссылка 5</a>
+                    <a href="#">Ссылка 3</a>
+                </div>
+                <div class="subcuts">
+                    <h4>Главная ссылка</h4>
+                    <a href="#">Ссылка 1</a>
+                    <a href="#">Ссылка 2</a>
+                    <a href="#">Ссылка 3</a>
+                    <a href="#">Ссылка 4</a>
+                    <a href="#">Ссылка 5</a>
+                    <a href="#">Ссылка 3</a>
+                </div>
+                <div class="subcuts">
+                    <h4>Главная ссылка</h4>
+                    <a href="#">Ссылка 1</a>
+                    <a href="#">Ссылка 2</a>
+                    <a href="#">Ссылка 3</a>
+                    <a href="#">Ссылка 4</a>
+                    <a href="#">Ссылка 5</a>
+                    <a href="#">Ссылка 3</a>
+                </div>
+                </div>
+              </div>
+            <p class="open_catalog">></p>
+        </div>
+            <ul>
+                <div class="divka">
+                <li >Обувь</li>
+                <div class="dropdown-obuv">
+                    <div class="subcat_block1">
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="divka">
+                <li>Одежда</li>
+                <div class="dropdown-obuv">
+                    <div class="subcat_block1">
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="divka">
+                <li>Спорт</li>
+                <div class="dropdown-obuv">
+                    <div class="subcat_block1">
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="divka">
+                <li>Бренды</li>
+                <div class="dropdown-obuv">
+                    <div class="subcat_block1">
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+                <div class="divka">
+                <li>Путешествие</li>
+                <div class="dropdown-obuv">
+                    <div class="subcat_block1">
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        <div class="subcuts">
+                            <h4>Главная ссылка</h4>
+                            <a href="#">Ссылка 1</a>
+                            <a href="#">Ссылка 2</a>
+                            <a href="#">Ссылка 3</a>
+                            <a href="#">Ссылка 4</a>
+                            <a href="#">Ссылка 5</a>
+                            <a href="#">Ссылка 3</a>
+                        </div>
+                        </div>
+                  </div>
+                </div>
+            </ul>
+            <form class="search_form" action="" method="get">
+            <input type="search" name="search" id="search_tovar">
+            <button type="submit">
+                <img src="{% static 'imgs/search.svg' %}"  alt="Поиск">
+            </button>
+            </form>
+        </div>
+    </header>
+    <!-- endheader -->
+{% endblock %}
+
+{%block main%}
+    <!-- main -->
+    <main>
+        <div class="first_section">
+            <div class="call_content">
+                <p>Спортивный инвентарь для горнолыжного спорта</p>
+                <a href="">Посмотреть</a>
+            </div>
+            <div class="img_content">
+                <img src="{% static 'imgs/39688e23-ec9c-4fed-992f-0db8bf853ab4.png' %}" alt="">
+            </div>
+        </div>
+        <div class="second_section">
+            <div class="brends">
+                <div class="owl-carousel">
+                    {%for i in brends%}
+                    <div class="img"><a href=""><img src="{{ i.img_brend.url }}" alt=""></a></div>
+                    {%endfor%}
+
+                </div>
+            </div>
+        </div>
+        <div class="preimush_section">
+            <h2>Почему выбирать именно нас?</h2>
+            <div class="preimush1">
+                <img src="{% static 'imgs/image 13.png' %}" alt="good quality">
+                <h3>Хорошее качество</h3>
+                <p>Наши спортивные товары   проходят проверку качества.</p>
+            </div>
+            <div class="preimush2">
+                <img src="{% static 'imgs/n2.png' %}" alt="security image">
+                <h3>Безопасный заказ</h3>
+                <p>Спите спокойно, наши транзакции на 100% безопасны.</p>
+            </div>
+            <div class="preimush3">
+                <img src="{% static 'imgs/preimush.png' %}" alt="good price">
+                <h3>Отличная цена</h3>
+                <p>Конкурентоспособные цены, которые трудно превзойти в любом месте Интернета.</p>
+            </div>
+            <div class="preimush4">
+                <img src="{% static 'imgs/choices_cqsy6ulbf9pb 1.png' %}" alt="choice">
+                <h3>Потрясающий выбор</h3>
+                <p>От спортивной одежды до спортивных товаров, у нас огромный ассортимент на выбор.</p>
+            </div>
+        </div>
+        <div class="cat_three_section">
+            <div class="three_cats">
+                <div class="one_cat">
+                <img src="{% static 'imgs/image 10 — копия (2).png' %}" alt="adventure">
+                <a href="">Путешествия</a></div>
+                <div class="one_cat">
+                <img src="{% static 'imgs/Rectangle 11 (1).png' %}" alt="velocycle">
+            <a href="">Велоспорт</a>
+        </div>
+                <div class="one_cat">
+                <img src="{% static 'imgs/image 11 (1) — копия.png' %}" alt="alpinizm">
+                <a href="">Альпинизм</a></div>
+            </div>
+        </div>
+        <div class="popular_tovars_slider">
+            <h2>Популярные товары</h2>
+            <div class="owl-carousel owl-theme second_slider">
+                {% for i in tovars %}
+                <div class="img1"><a href=""><img src="{{i.img.url }}" alt=""><p>{{i.name}}</p><p class="price">{{i.price}}</p></a></div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="map_office">
+            <h2>Наш офис</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.633670053006!2d46.37672906709423!3d55.521331034807275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415b21267703bf2f%3A0x1723c233b08ee7b1!2z0KjRg9C80LXRgNC70Y8sINCn0YPQstCw0YjRgdC60LDRjyDQoNC10YHQvy4sIDQyOTEyMA!5e0!3m2!1sru!2sru!4v1706198771673!5m2!1sru!2sru" width="85%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <!-- endmain -->
+        {% endblock %}
+
+        {%block footer%}
+            <!-- footer -->
+            <footer>
+                <div class="footer_text">
+                <ul>
+                    <li><h3>Категории</h3></li>
+                    <li><a href="">Лыжный спорт</a></li>
+                    <li><a href="">Фитнес</a></li>
+                    <li><a href="">Спорт</a></li>
+                </ul>
+                <ul>
+                    <li><h3>Помощь</h3></li>
+                    <li><a href="">Гарантийное обслуживание</a></li>
+                    <li><a href="">Поддержка</a></li>
+                    <li><a href="">Гарантия цены</a></li>
+                </ul>
+                <ul>
+                    <li><h3>О компании</h3></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="">Пользовательское соглашение</a></li>
+                    <li><a href="">Политика конфиденциальности</a></li>
+                </ul>
+                <ul>
+                    <li><h3>Контакты</h3></li>
+                    <li><p>8 000 000-000-1</p></li>
+                    <div class="soc_seti">
+                    <img class="vkimg" src="{% static 'imgs/vk 1.png' %}" alt="vkimg">
+                    <img class="telegramimg" src="{% static 'imgs/telegr 1.png' %}" alt="telegramimg">
+                    <img class="whatsappimg" src="{% static 'imgs/whats.png' %}" alt="whatsappimg">
+                    </div>
+                </ul>
+            </div>
+            <div class="copyright"><p>© 2024 Все права защищены.</p></div>
+            </footer>
+        <!-- endfooter -->
+        {% endblock %}
+    </main>
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <script src={% static 'js/jquery-3.7.1.min.js' %}></script>
+    <script src={% static 'js/owl.carousel.min.js' %}></script>
+    <script src={% static 'js/main.js' %}></script>
+</body>
+</html>

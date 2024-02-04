@@ -1,0 +1,21 @@
+{% extends 'mysport/index.html' %}
+{%load static%}
+{% block main %}
+    <content>
+        <div class="map">
+            <h1>О нас</h1>
+            <h2>Наш офис</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2258.633670053006!2d46.37672906709423!3d55.521331034807275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x415b21267703bf2f%3A0x1723c233b08ee7b1!2z0KjRg9C80LXRgNC70Y8sINCn0YPQstCw0YjRgdC60LDRjyDQoNC10YHQvy4sIDQyOTEyMA!5e0!3m2!1sru!2sru!4v1706198771673!5m2!1sru!2sru" width="85%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="contacts">
+                <ul>
+                    <li><p>8 000 000-000-1</p></li>
+                    <div class="soc_seti">
+                    <img class="vkimg" src="{%static 'imgs/vk 1.png'%}" alt="vkimg">
+                    <img class="telegramimg" src="{%static 'imgs/telegr 1.png'%}" alt="telegramimg">
+                    <img class="whatsappimg" src="{%static 'imgs/whats.png'%}" alt="whatsappimg">
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </content>
+{% endblock %}
