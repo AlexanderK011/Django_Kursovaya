@@ -1,16 +1,20 @@
 from django.shortcuts import render
 
 # Create your views here.
-from mysport.models import Brend,Sport_item
-
-
+from mysport.models import Brend,Sport_item,Category,Subcat #Subcat_cat
 
 def index(request):
     brends = Brend.objects.all()
     tovars = Sport_item.objects.all()[:10]
+    cats =  Category.objects.values('id','name')
+    subcat = Subcat.objects.all()
+    # subcat_cat = Subcat_cat.objects.all()
     data ={
         'brends':brends,
-        'tovars':tovars
+        'tovars':tovars,
+        'cats':cats,
+        'subcat':subcat,
+        # 'subcat_cat':subcat_cat
     }
     return render(request,'mysport/index.html',data)
 

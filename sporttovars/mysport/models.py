@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
+
 
 class Brend(models.Model):
     name = models.CharField(max_length=15)
@@ -73,9 +76,15 @@ class Category(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
 
-class Subcat(models.Model):
+class Subcat(MPTTModel):
     name = models.CharField(max_length=25)
     cat = models.ForeignKey(Category,on_delete=models.CASCADE)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    img_subcatcat = models.ImageField(null=True,upload_to='D:\projects\kursov_futurediplom\sporttovars\static\imgmod')
+    subcutscats = models.ManyToManyField(Sport_item,blank=True)
+
+    class MPTTMeta:
+        order_insertion_by = ['name']
 
     def __str__(self):
         return self.name
@@ -84,15 +93,29 @@ class Subcat(models.Model):
         verbose_name = 'Сабкатегория'
         verbose_name_plural = 'Сабкатегории'
 
-class Subcat_cat(models.Model):
-    name = models.CharField(max_length=25)
-    subcat = models.ForeignKey(Subcat,on_delete=models.CASCADE,null=True)
-    subcutscats = models.ManyToManyField(Sport_item)
-    img_subcatcat = models.ImageField(upload_to='D:\projects\kursov_futurediplom\sporttovars\static\imgmod')
+# class Subcat(models.Model):
+#     name = models.CharField(max_length=25)
+#     cat = models.ForeignKey(Category,on_delete=models.CASCADE)
+#     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+#     img_subcatcat = models.ImageField(upload_to='D:\projects\kursov_futurediplom\sporttovars\static\imgmod', null=True)
+#     subcutscats = models.ManyToManyField(Sport_item)
+#
+#     def __str__(self):
+#         return self.name
+#
+#     class Meta:
+#         verbose_name = 'Сабкатегория'
+#         verbose_name_plural = 'Сабкатегории'
 
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Категория сабкатегории'
-        verbose_name_plural = 'Категории сабкатегорий'
+# class Subcat_cat(models.Model):
+#     name = models.CharField(max_length=25)
+#     subcat = models.ForeignKey(Subcat,on_delete=models.CASCADE,null=True)
+#     subcutscats = models.ManyToManyField(Sport_item)
+#     img_subcatcat = models.ImageField(upload_to='D:\projects\kursov_futurediplom\sporttovars\static\imgmod')
+#
+#     def __str__(self):
+#         return self.name
+#
+#     class Meta:
+#         verbose_name = 'Категория сабкатегории'
+#         verbose_name_plural = 'Категории сабкатегорий'

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load mptt_tags %}
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,96 +45,25 @@
             <p class="catalog">Каталог</p>
             <div class="dropdown-content">
                 <div class="cats">
-                <a id ='cat_1' href="#">Ссылка 1</a>
-                <a id ='cat_2' href="#">Ссылка 2</a>
-                <a id ='cat_3' href="#">Ссылка 3</a>
+                    {%for i in cats%}
+                <a id ='cat_{{i.id}}' href="#">{{i.name}}</a>
+                    {%endfor%}
+<!--                <a id ='cat_2' href="#">Ссылка 2</a>-->
+<!--                <a id ='cat_3' href="#">Ссылка 3</a>-->
             </div>
-            <div class="subcat_block" id ='cat_1'>
+                <div class="subcall">
+            {%recursetree subcat%}
+            <div class="subcat_block" id ='cat_{{node.cat_id}}'>
             <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
-            </div>
-            <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
-            </div>
-            <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
-            </div>
-            <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
+                {% if node.level == 0 %}
+                <h4>{{node.name}}</h4>
+                {% endif %}
+                {% for item in node.children.all %}
+                <a href="#">{{item}}</a>
+                {%endfor%}
             </div>
         </div>
-        <div class="subcat_block" id ='cat_2'>
-            <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
-            </div>
-            <div class="subcuts">
-                <h4>Главная ссылка</h4>
-                <a href="#">Ссылка 1</a>
-                <a href="#">Ссылка 2</a>
-                <a href="#">Ссылка 3</a>
-                <a href="#">Ссылка 4</a>
-                <a href="#">Ссылка 5</a>
-                <a href="#">Ссылка 3</a>
-            </div>
-            </div>
-            <div class="subcat_block" id ='cat_3'>
-                <div class="subcuts">
-                    <h4>Главная ссылка</h4>
-                    <a href="#">Ссылка 1</a>
-                    <a href="#">Ссылка 2</a>
-                    <a href="#">Ссылка 3</a>
-                    <a href="#">Ссылка 4</a>
-                    <a href="#">Ссылка 5</a>
-                    <a href="#">Ссылка 3</a>
-                </div>
-                <div class="subcuts">
-                    <h4>Главная ссылка</h4>
-                    <a href="#">Ссылка 1</a>
-                    <a href="#">Ссылка 2</a>
-                    <a href="#">Ссылка 3</a>
-                    <a href="#">Ссылка 4</a>
-                    <a href="#">Ссылка 5</a>
-                    <a href="#">Ссылка 3</a>
-                </div>
-                <div class="subcuts">
-                    <h4>Главная ссылка</h4>
-                    <a href="#">Ссылка 1</a>
-                    <a href="#">Ссылка 2</a>
-                    <a href="#">Ссылка 3</a>
-                    <a href="#">Ссылка 4</a>
-                    <a href="#">Ссылка 5</a>
-                    <a href="#">Ссылка 3</a>
-                </div>
+                  {%endrecursetree%}
                 </div>
               </div>
             <p class="open_catalog">></p>
@@ -237,22 +167,9 @@
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
                         <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
+                            {%for i in brends%}
+                            <a href="#">{{i.name}}</a>
+                            {%endfor%}
                         </div>
                         </div>
                   </div>
