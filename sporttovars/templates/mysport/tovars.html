@@ -1,5 +1,5 @@
 {% extends 'mysport/index.html' %}
-
+{% load mptt_tags %}
 {% block main %}
             <!-- content -->
             <content>
@@ -42,12 +42,13 @@
                 </div>
                 <h2>Каталог ..</h2>
                 <div class="content_tovar">
+                        {%for i in tovars%}
                     <div class="tovar">
                         <div class="tovar_img">
                             <a href=""><img src="imgs/image 13.png" alt=""></a>
                     </div>
                     <div class="tovar_info">
-                        <a href=""><h4>Спортивные брюки Monster Truck </h4></a>
+                        <a href=""><h4>{{i.subcutscats__name}} </h4></a>
                         <small>Россия; Хлопок,102-104 см</small>
                         <p>Цвет: Серый</p>
                     </div>
@@ -55,7 +56,9 @@
                         <p>699 ₽ </p>
                         <a href="">Посмотреть</a>
                     </div>
+
                     </div>
+                     {%endfor%}
                     <div class="tovar">
                         <div class="tovar_img">
                         <a href=""><img src="imgs/image 13.png" alt=""></a>

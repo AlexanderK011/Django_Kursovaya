@@ -53,7 +53,10 @@ def tovars(request,id):
     subc_adventure = Subcat.objects.filter(cat__name='Путешествия').only('name')
     obuv = Subcat.objects.filter(name='Ботинки').only('name', 'id')
     odezda = Subcat.objects.filter(name='Одежда').only('name', 'id')
-    tovars = Subcat.objects.filter(id=id).values('subcutscats')
+    tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats').values('id','subcutscats','subcutscats__name')
+    print(tovars)
+    for i in tovars:
+        print(i)
     data = {
         'cats': cats,
         'subcat': subcat,
