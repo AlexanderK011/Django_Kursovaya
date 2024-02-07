@@ -23,9 +23,9 @@ from mysport.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index),
-    path('subcat/',cats),
-    path('tovars/',tovars),
+    path('',index,name='index'),
+    path('subcat/<int:id>/',cats),
+    path('tovars/<int:id>/',tovars),
     path('one_tovar/',one_tovar),
     path('aboutus/',onas)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

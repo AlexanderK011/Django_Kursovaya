@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load mptt_tags %}
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +9,7 @@
 </head>
 <body>
 {%block header%}
+{% load mptt_tags %}
     <!-- header -->
     <header>
         <div class="head1">
@@ -46,17 +46,15 @@
             <div class="dropdown-content">
                 <div class="cats">
                     {%for i in cats%}
-                <a id ='cat_{{i.id}}' href="#">{{i.name}}</a>
+                <a id ='cat_{{i.id}}'>{{i.name}}</a>
                     {%endfor%}
-<!--                <a id ='cat_2' href="#">Ссылка 2</a>-->
-<!--                <a id ='cat_3' href="#">Ссылка 3</a>-->
             </div>
                 <div class="subcall">
             {%recursetree subcat%}
             <div class="subcat_block" id ='cat_{{node.cat_id}}'>
             <div class="subcuts">
                 {% if node.level == 0 %}
-                <h4>{{node.name}}</h4>
+                <a href="{{node.get_absolute_url}}"><h4>{{node.name}}</h4></a>
                 {% endif %}
                 {% for item in node.children.all %}
                 <a href="#">{{item}}</a>
@@ -73,42 +71,14 @@
                 <li >Обувь</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
+                        {%recursetree obuv%}
                         <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
+                            <h4>{{node.cat}}</h4>
+                            {% for item in node.children.all %}
+                            <a href="#">{{item}}</a>
+                            {%endfor%}
                         </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
+                        {%endrecursetree%}
                         </div>
                   </div>
                 </div>
@@ -116,49 +86,32 @@
                 <li>Одежда</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
+                        {%recursetree odezda%}
                         <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
+                            <h4>{{node.cat}}</h4>
+                            {% for item in node.children.all %}
+                            <a href="#">{{item}}</a>
+                            {%endfor%}
                         </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
+                        {%endrecursetree%}
                         </div>
                   </div>
                 </div>
                 <div class="divka">
-                <li>Спорт</li>
+                <li>Зимний Спорт</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
+                          {%recursetree subc_winter%}
                         <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
+                                {% if node.level == 0 %}
+                <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
+                {% endif %}
+                {% for item in node.children.all %}
+                <a href="#">{{item}}</a>
+                {%endfor%}
                         </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
+                        {%endrecursetree%}
+
                         </div>
                   </div>
                 </div>
@@ -178,24 +131,16 @@
                 <li>Путешествие</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
+                          {%recursetree subc_adventure%}
                         <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
+                                {% if node.level == 0 %}
+                <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
+                {% endif %}
+                {% for item in node.children.all %}
+                <a href="#">{{item}}</a>
+                {%endfor%}
                         </div>
-                        <div class="subcuts">
-                            <h4>Главная ссылка</h4>
-                            <a href="#">Ссылка 1</a>
-                            <a href="#">Ссылка 2</a>
-                            <a href="#">Ссылка 3</a>
-                            <a href="#">Ссылка 4</a>
-                            <a href="#">Ссылка 5</a>
-                            <a href="#">Ссылка 3</a>
-                        </div>
+                        {%endrecursetree%}
                         </div>
                   </div>
                 </div>

@@ -93,6 +93,9 @@ class Subcat(MPTTModel):
         verbose_name = 'Сабкатегория'
         verbose_name_plural = 'Сабкатегории'
 
+    def get_absolute_url(self):
+        return f'/subcat/{self.id}'
+
 # class Subcat(models.Model):
 #     name = models.CharField(max_length=25)
 #     cat = models.ForeignKey(Category,on_delete=models.CASCADE)
