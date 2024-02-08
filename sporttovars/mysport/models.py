@@ -31,7 +31,7 @@ class Sport_item(models.Model):
         verbose_name_plural = 'Товары'
 
 class Size(models.Model):
-    size = models.IntegerField()
+    size = models.CharField(max_length=10)
     good = models.ForeignKey(Sport_item,on_delete = models.CASCADE)
 
     def __str__(self):
@@ -53,9 +53,10 @@ class Color(models.Model):
         verbose_name_plural = 'Цвета'
 
 class Characheristic(models.Model):
-    season_year = models.CharField(max_length=5)
+    season_year = models.CharField(max_length=15)
     country_crator = models.CharField(max_length=25)
-    vid_sport = models.CharField(max_length=20)
+    material = models.CharField(max_length=30)
+    vid_sport = models.CharField(max_length=50)
     good = models.OneToOneField(Sport_item,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -95,6 +96,9 @@ class Subcat(MPTTModel):
 
     def get_absolute_url(self):
         return f'/subcat/{self.id}'
+
+    def get_absolute_url1(self):
+        return f'/tovars/{self.id}'
 
 # class Subcat(models.Model):
 #     name = models.CharField(max_length=25)

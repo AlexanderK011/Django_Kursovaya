@@ -645,6 +645,12 @@ padding-bottom:4% ;
     padding-left: 4%;
     padding-right: 3%;
 }
+.tovar_img a img {
+    width: 141px;
+    height: 88px;
+    object-fit: cover;
+    object-position: center;
+}
 .filt_param{
     display: flex;
     padding-right: 1%;

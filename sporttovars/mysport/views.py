@@ -53,10 +53,10 @@ def tovars(request,id):
     subc_adventure = Subcat.objects.filter(cat__name='Путешествия').only('name')
     obuv = Subcat.objects.filter(name='Ботинки').only('name', 'id')
     odezda = Subcat.objects.filter(name='Одежда').only('name', 'id')
-    tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats').values('id','subcutscats','subcutscats__name')
-    print(tovars)
-    for i in tovars:
-        print(i)
+    tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats')\
+        .values('id','subcutscats','subcutscats__name','subcutscats__img',
+                'subcutscats__color__color','subcutscats__price','subcutscats__characheristic__country_crator'
+                ,'subcutscats__characheristic__material')
     data = {
         'cats': cats,
         'subcat': subcat,
@@ -86,7 +86,6 @@ def one_tovar(request):
         'brends': brends,
         'obuv': obuv,
         'odezda': odezda,
-        'tovar':tovar
     }
 
     return render(request, 'mysport/one_tovar.html',data)

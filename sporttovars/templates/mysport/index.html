@@ -57,7 +57,7 @@
                 <a href="{{node.get_absolute_url}}"><h4>{{node.name}}</h4></a>
                 {% endif %}
                 {% for item in node.children.all %}
-                <a href="#">{{item}}</a>
+                <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
             </div>
         </div>
@@ -75,7 +75,7 @@
                         <div class="subcuts">
                             <h4>{{node.cat}}</h4>
                             {% for item in node.children.all %}
-                            <a href="#">{{item}}</a>
+                            <a href="{{node.get_absolute_url1}}">{{item}}</a>
                             {%endfor%}
                         </div>
                         {%endrecursetree%}
@@ -90,7 +90,7 @@
                         <div class="subcuts">
                             <h4>{{node.cat}}</h4>
                             {% for item in node.children.all %}
-                            <a href="#">{{item}}</a>
+                            <a href="{{node.get_absolute_url1}}">{{item}}</a>
                             {%endfor%}
                         </div>
                         {%endrecursetree%}
