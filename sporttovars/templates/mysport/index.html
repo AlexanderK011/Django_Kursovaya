@@ -45,12 +45,12 @@
             <p class="catalog">Каталог</p>
             <div class="dropdown-content">
                 <div class="cats">
-                    {%for i in cats%}
+                    {%for i in menu.cats%}
                 <a id ='cat_{{i.id}}'>{{i.name}}</a>
                     {%endfor%}
             </div>
                 <div class="subcall">
-            {%recursetree subcat%}
+            {%recursetree menu.subcat%}
             <div class="subcat_block" id ='cat_{{node.cat_id}}'>
             <div class="subcuts">
                 {% if node.level == 0 %}
@@ -71,11 +71,11 @@
                 <li >Обувь</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
-                        {%recursetree obuv%}
+                        {%recursetree menu.obuv%}
                         <div class="subcuts">
                             <h4>{{node.cat}}</h4>
                             {% for item in node.children.all %}
-                            <a href="{{node.get_absolute_url1}}">{{item}}</a>
+                            <a href="{{item.get_absolute_url1}}">{{item}}</a>
                             {%endfor%}
                         </div>
                         {%endrecursetree%}
@@ -86,11 +86,11 @@
                 <li>Одежда</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
-                        {%recursetree odezda%}
+                        {%recursetree menu.odezda%}
                         <div class="subcuts">
                             <h4>{{node.cat}}</h4>
                             {% for item in node.children.all %}
-                            <a href="{{node.get_absolute_url1}}">{{item}}</a>
+                            <a href="{{item.get_absolute_url1}}">{{item}}</a>
                             {%endfor%}
                         </div>
                         {%endrecursetree%}
@@ -101,13 +101,13 @@
                 <li>Зимний Спорт</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
-                          {%recursetree subc_winter%}
+                          {%recursetree menu.subc_winter%}
                         <div class="subcuts">
                                 {% if node.level == 0 %}
                 <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
                 {% endif %}
                 {% for item in node.children.all %}
-                <a href="#">{{item}}</a>
+                <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
                         </div>
                         {%endrecursetree%}
@@ -120,8 +120,8 @@
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
                         <div class="subcuts">
-                            {%for i in brends%}
-                            <a href="#">{{i.name}}</a>
+                            {%for i in menu.brends%}
+                            <a href="{%url 'brend_tovars' i.name%}">{{i.name}}</a>
                             {%endfor%}
                         </div>
                         </div>
@@ -131,13 +131,13 @@
                 <li>Путешествие</li>
                 <div class="dropdown-obuv">
                     <div class="subcat_block1">
-                          {%recursetree subc_adventure%}
+                          {%recursetree menu.subc_adventure%}
                         <div class="subcuts">
                                 {% if node.level == 0 %}
                 <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
                 {% endif %}
                 {% for item in node.children.all %}
-                <a href="#">{{item}}</a>
+                <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
                         </div>
                         {%endrecursetree%}
@@ -145,8 +145,8 @@
                   </div>
                 </div>
             </ul>
-            <form class="search_form" action="" method="get">
-            <input type="search" name="search" id="search_tovar">
+            <form class="search_form" action="{%url 'search'%}"method="get">
+            <input type="search" name="search" id="search_tovar" placeholder="Поиск">
             <button type="submit">
                 <img src="{% static 'imgs/search.svg' %}"  alt="Поиск">
             </button>
@@ -171,8 +171,8 @@
         <div class="second_section">
             <div class="brends">
                 <div class="owl-carousel">
-                    {%for i in brends%}
-                    <div class="img"><a href=""><img src="{{ i.img_brend.url }}" alt=""></a></div>
+                    {%for i in menu.brends%}
+                    <div class="img"><a href="{%url 'brend_tovars' i.name%}"><img src="{{ i.img_brend.url }}" alt=""></a></div>
                     {%endfor%}
 
                 </div>

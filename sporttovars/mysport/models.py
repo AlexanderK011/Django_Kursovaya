@@ -16,6 +16,9 @@ class Brend(models.Model):
         verbose_name = 'Бренд'
         verbose_name_plural = 'Бренды'
 
+    def get_absolute_url_brend(self):
+        return f'/tovars/{self.name}'
+
 class Sport_item(models.Model):
     name = models.CharField(max_length=30)
     brend = models.ForeignKey(Brend,on_delete=models.CASCADE)

@@ -5,15 +5,15 @@
  <!-- content -->
  <content>
 <div class="info_tovar">
-    <img src="imgs/nike-kurtka.png" alt="">
+    <img src="{{tovar.img.url}}" alt="">
     <div class="info_tovall">
         <p class="p_brendname">Nike</p>
-        <h3>Куртка зимняя Nike</h3>
-        <p class="p_money">6990 ₽</p>
+        <h3>{{tovar.name}}</h3>
+        <p class="p_money">{{tovar.price}} ₽</p>
         <div class="opisan_block">
-            <p class="color">Цвет: Серый</p>
+            <p class="color">Цвет: {{color.color}}</p>
         <h4>Описание:</h4>
-        <p class="opisan_tovar">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius neque ipsam voluptate optio aperiam voluptatem, repellat eum voluptatum, perferendis, quos vero incidunt fugiat eveniet esse ullam expedita nihil sit! Blanditiis qui, esse nisi nesciunt velit mollitia distinctio ducimus asperiores, laudantium recusandae quidem, non possimus. Cum iste officia modi eveniet vitae maiores, atque tenetur delectus voluptatibus magnam earum culpa id voluptates eum minima quis blanditiis exercitationem, assumenda, accusantium fugiat dolore tempora repudiandae esse! Officiis aperiam in pariatur vitae at voluptatem ipsum. Quidem cupiditate quisquam voluptatem. Non possimus quidem totam nisi maiores voluptates nihil quia quae fugit nostrum tempora dolore ipsum, consequuntur suscipit! Sed laborum tempore dignissimos quisquam, repellendus quidem voluptas ipsa molestiae temporibus repudiandae! Eum ducimus repellendus ut voluptatibus aspernatur dolorum numquam molestias tempore placeat qui quo quis obcaecati, laborum cupiditate pariatur vero vitae esse, necessitatibus, maiores laudantium. Magni harum quibusdam odit sapiente omnis officia corporis modi doloremque, nesciunt tempora iusto deleniti nisi obcaecati corrupti aliquam. Eaque quo vitae vero illo praesentium accusamus, in tempora voluptas quibusdam repellendus consequuntur blanditiis eveniet dignissimos consectetur eligendi reiciendis laudantium, necessitatibus doloremque placeat! Voluptate, dolores quis aliquid id eos cupiditate quidem perspiciatis facilis quaerat voluptas, itaque iure rerum sed ducimus facere deserunt. Nulla, ullam iste!
+        <p class="opisan_tovar">{{tovar.description}}
             </p>
             </div>
     </div>
@@ -22,16 +22,20 @@
     <div class="characteristic">
         <h2>Характеристики</h2>
         <div class="charct_one">
-        <p>Пол</p>
-        <p>Мужской</p>
+        <p>Размер:</p>
+        <p>{%for i in size%}{{i.size}},{%endfor%}</p>
+    </div>
+        <div class="charct_one">
+        <p>Время года:</p>
+        <p>{{harakt.season_year}}</p>
     </div>
     <div class="charct_one">
-        <p>Пол</p>
-        <p>Мужской</p>
+        <p>Страна производитель: </p>
+        <p>{{harakt.country_crator}}</p>
     </div>
     <div class="charct_one">
-        <p>Пол</p>
-        <p>Мужской</p>
+        <p>Материал: </p>
+        <p>{{harakt.material}}</p>
     </div>
     </div>
      <!--end content -->

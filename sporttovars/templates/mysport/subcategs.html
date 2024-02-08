@@ -15,7 +15,7 @@
             {%recursetree cat_subcat%}
              {% for item in node.children.all %}
             <div class="cat_perehod">
-           <a href=""><img src="{{item.img_subcatcat.url}}" alt="image_cat"></a>
+           <a href="{{item.get_absolute_url1}}"><img src="{{item.img_subcatcat.url}}" alt="image_cat"></a>
            <a href="">{{item.name}}</a>
         </div>
             {%endfor%}

@@ -26,6 +26,8 @@ urlpatterns = [
     path('',index,name='index'),
     path('subcat/<int:id>/',cats),
     path('tovars/<int:id>/',tovars),
-    path('one_tovar/',one_tovar),
-    path('aboutus/',onas)
+    path('one_tovar/<int:id>',one_tovar,name='tovar'),
+    path('aboutus/',onas),
+    path('tovars/<str:name>/',tovars_brends, name='brend_tovars'),
+    path('tovar/search/',search_tovars,name='search')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
