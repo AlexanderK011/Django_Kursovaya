@@ -103,6 +103,9 @@ class Subcat(MPTTModel):
     def get_absolute_url1(self):
         return f'/tovars/{self.id}'
 
+    def get_absolute_url3(self):
+        return f'/tovars/{self.id}/sort/'
+
 # class Subcat(models.Model):
 #     name = models.CharField(max_length=25)
 #     cat = models.ForeignKey(Category,on_delete=models.CASCADE)

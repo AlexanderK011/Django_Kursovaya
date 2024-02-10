@@ -23,22 +23,18 @@
                 <span></span>
                 </div>
                 <ul class="nav_menu" id="nav_menuid">
-                    <a id ='categor_nav1'><li>Главная</li> <p>></p></a>
-                    <div class="open_subcateg" id="categor_nav1">
-                        <a><li>Машины</li><p>></p></a>
-                        <a><li>Машины</li><p>></p></a>
-                        <a><li>Машины</li><p>></p></a>
+                    {%for i in menu.cats%}
+                    <a id ='categor_nav{{i.id}}'><li>{{i.name}}</li> <p>></p></a>
+                    {%recursetree menu.subcat%}
+                    {% if node.cat.id == i.id %}
+                    <div class="open_subcateg" id="categor_nav{{node.cat.id}}">
+                        <a href="{{node.get_absolute_url}}"><li>{{node.name}}</li><p>></p></a>
                     </div>
-                    <a id ='categor_nav2'><li>Машины</li><p>></p></a>
-                    <div class="open_subcateg" id="categor_nav2">
-                        <a><li>Машины</li><p>></p></a>
-                        <a><li>Машины</li><p>></p></a>
-                        <a><li>Машины</li><p>></p></a>
-                    </div>
-                    <a id ='categor_nav'><li>Контакты</li><p>></p></a>
-                    <a><li>Галерея</li><p>></p></a>
-                    <a><li>Рейтинги</li><p>></p></a>
-                    <a><li>Категории</li><p>></p></a>
+                    {%endif%}
+                    {%endrecursetree%}
+                    {%endfor%}
+
+
                 </ul>
             </div>
         <div class="catalogop">
@@ -53,9 +49,7 @@
             {%recursetree menu.subcat%}
             <div class="subcat_block" id ='cat_{{node.cat_id}}'>
             <div class="subcuts">
-                {% if node.level == 0 %}
                 <a href="{{node.get_absolute_url}}"><h4>{{node.name}}</h4></a>
-                {% endif %}
                 {% for item in node.children.all %}
                 <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
@@ -103,9 +97,7 @@
                     <div class="subcat_block1">
                           {%recursetree menu.subc_winter%}
                         <div class="subcuts">
-                                {% if node.level == 0 %}
                 <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
-                {% endif %}
                 {% for item in node.children.all %}
                 <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
@@ -133,9 +125,7 @@
                     <div class="subcat_block1">
                           {%recursetree menu.subc_adventure%}
                         <div class="subcuts">
-                                {% if node.level == 0 %}
                 <h4><a href="{{node.get_absolute_url}}">{{node.name}}</a></h4>
-                {% endif %}
                 {% for item in node.children.all %}
                 <a href="{{item.get_absolute_url1}}">{{item}}</a>
                 {%endfor%}
