@@ -25,10 +25,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name='index'),
     path('subcat/<int:id>/',cats),
-    path('tovars/<int:id>/',tovars),
+    path('subcat/cat/<int:id>/',takecategory,name = 'cat_subc'),
+    path('tovars/<int:id>/',tovars, name='tovars'),
     path('one_tovar/<int:id>',one_tovar,name='tovar'),
-    path('aboutus/',onas),
+    path('aboutus/',onas,name='about_us'),
     path('tovars/<str:name>/',tovars_brends, name='brend_tovars'),
     path('tovar/search/',search_tovars,name='search'),
-    path('tovars/sort/<int:id>/',tovars_sort,name='sort_tovar')
+    path('tovars/sort/<int:id>/',tovars_sort,name='sort_tovar'),
+    path('filter-products/',filter_prod,name='filter_prod')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

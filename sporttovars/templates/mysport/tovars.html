@@ -17,44 +17,69 @@
                 <div class="filter">
                     <div class="price_filter">
                     <p>Цена, ₽</p>             
-                    <input type="number" name="price_start" id="" placeholder="от">
-                    <input type="number" name="price_end" id="" placeholder="до">
+                    <input type="number" name="price_start" id="price_st" placeholder="от">
+                    <input type="number" name="price_end" id="price_end" placeholder="до">
                 </div>
                 <div class="cat_filter">
                     <p>Категория</p>
+                    {% if request.resolver_match.url_name == 'tovars' %}
                     {%recursetree filt_cats%}
                     {%for i in node.children.all%}
                     <div class="">
-                    <input type="checkbox" id="scales" name="scales" checked />
-                    <label for="scales">{{i}}</label>
+                    <input class="filter-checkbox" data-filter="category" value="{{i.id}}" type="checkbox" id="scales" name="{{i}}"  />
+                    <label for="{{i}}">{{i}}</label>
                         </div>
                     {%endfor%}
                     {% endrecursetree %}
+                    {%endif%}
                 </div>
                 <div class="color_filter">
                     <p>Цвет</p>
-                    <input type="checkbox" id="scales" name="scales" checked />
-                    <label for="scales">Scales</la  bel>
+                    {% if request.resolver_match.url_name == 'brend_tovars' %}
+                    {%for i in tovars_color%}
+                    <div class="">
+                    <input type="checkbox" class="filter-checkbox" value="{{i.color__id}}" data-filter="color" id="scales" name="{{i.color__color}}"  />
+                    <label for="{{i.color__color}}">{{i.color__color}}</label>
+                        </div>
+                        {%endfor%}
+                    {%endif%}
+                    {% if request.resolver_match.url_name == 'tovars' %}
+                    {%for i in tovars_color%}
+                    <div class="">
+                    <input type="checkbox" class="filter-checkbox" value="{{i.subcutscats__color__id}}" data-filter="color"  id="scales" name="{{i.subcutscats__color__color}}" />
+                    <label for="{{i.subcutscats__color__color}}">{{i.subcutscats__color__color}}</label>
+                        </div>
+                        {%endfor%}
+                    {%endif%}
                 </div>
                 <div class="brends_filter">
                     <p>Бренды</p>
-                    <input type="checkbox" id="scales" name="scales" checked />
-                    <label for="scales">Scales</label>
+                    {%for i in tovars_brends%}
+                    <div class="">
+                    <input type="checkbox" class="filter-checkbox" value="{{i.subcutscats__brend}}" id="scales" data-filter="brends" name="{{i.subcutscats__brend__name}}"  />
+                    <label for="{{i.subcutscats__brend__name}}">{{i.subcutscats__brend__name}}</label>
+                        </div>
+                    {%endfor%}
                 </div>
+                    <input class='subm' type="submit" value="Посмотреть">
             </form>
                 </div>
                 <div class="all_tovar">
                 <div class="filter_tovars_bm">
-                    <select name="select" onchange="if (this.value) window.location.href = this.value" class="select-css" placeholder="Выбрать сортировку">
-                        <option value="value1" disabled selected>Выбрать сортировку</option>
-                        <option value="{%url 'index'%}">По убыванию цены</option>
-                        <option value="{%url 'index'%}">По алфавиту a..я</option>
-                        <option value="{%url 'index'%}">По алфавиту я..а</option>
-                        <option value="{%url 'index'%}">По возрастанию цены</option>
+                    {% if not request.resolver_match.url_name == 'search' %}
+                    <form action="" method = 'get'>
+                    <select name="select" onchange="this.form.submit()" class="select-css" placeholder="Выбрать сортировку">
+                        <option name="select" value="value1" disabled selected>Выбрать сортировку</option>
+                        <option type="submit"  name="select" value="-subcutscats__price">По убыванию цены</option>
+                        <option type="submit"  name="select" value="subcutscats__name">По алфавиту a..я</option>
+                        <option type="submit"  name="select" value="-subcutscats__name">По алфавиту я..а</option>
+                        <option type="submit"  name="select" value="subcutscats__price">По возрастанию цены</option>
                       </select>
+                        </form>
+                    {%endif%}
                 </div>
                 <h2>Каталог ..</h2>
-                <div class="content_tovar">
+                <div class="content_tovar" id="filtered_tovars">
                         {%for i in tovars%}
                     <div class="tovar">
                         <div class="tovar_img">
@@ -80,7 +105,7 @@
                     <div class="tovar_info">
                         <a href="{%url 'tovar' i.id%}"><h4>{{i.name}} </h4></a>
                         <small>{{i.characheristic.country_crator}}; {{i.characheristic.material}}, 102-104 см</small>
-                        <p>Цвет: {{i.color__color}}</p>
+                        <p>Цвет: {{i.color}}</p>
                     </div>
                     <div class="tovar_watch">
                         <p>{{i.price}} ₽ </p>

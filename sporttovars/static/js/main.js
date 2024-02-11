@@ -62,10 +62,39 @@ $(this).on('click',function(event){
     $('div#'+$(this).attr('id')).toggle('display')
 });})
 
+$(document).ready(function(){
+$('.filter-checkbox').on('click',function(){
+let filter_obj ={}
+
+$('.filter-checkbox').each(function(){
+let filt_value = $(this).val()
+
+let filt_key = $(this).data('filter')
+filter_obj[filt_key] = Array.from(document.querySelectorAll('input[data-filter=' + filt_key + ']:checked')).map(function(element){
+return element.value
+})
+})
+console.log(('filter object  is: ', filter_obj))
+$.ajax({
+url:'/filter-products',
+data: filter_obj ,
+dataType:'json',
+beforeSend: function(){
+console.log('sending')
+},
+success:function(response){
+console.log(response)
+$('#filtered_tovars').html(response.data)
+}
+})
+})
+})
+
 
 $('.filter_button').on('click',function(){
     $('.filter').toggleClass('block')
 })
+
 
 // Ссылки для картинок
 let img1=document.querySelector('.vkimg')

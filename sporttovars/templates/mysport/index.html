@@ -136,7 +136,7 @@
                 </div>
             </ul>
             <form class="search_form" action="{%url 'search'%}"method="get">
-            <input type="search" name="search" id="search_tovar" placeholder="Поиск">
+            <input type="text" name="search" id="search_tovar" placeholder="Поиск">
             <button type="submit">
                 <img src="{% static 'imgs/search.svg' %}"  alt="Поиск">
             </button>
@@ -152,7 +152,7 @@
         <div class="first_section">
             <div class="call_content">
                 <p>Спортивный инвентарь для горнолыжного спорта</p>
-                <a href="">Посмотреть</a>
+                <a href="{%url 'cat_subc' id=4 %}">Посмотреть</a>
             </div>
             <div class="img_content">
                 <img src="{% static 'imgs/39688e23-ec9c-4fed-992f-0db8bf853ab4.png' %}" alt="">
@@ -195,21 +195,21 @@
             <div class="three_cats">
                 <div class="one_cat">
                 <img src="{% static 'imgs/image 10 — копия (2).png' %}" alt="adventure">
-                <a href="">Путешествия</a></div>
+                <a href="{%url 'cat_subc' id=2 %}">Путешествия</a></div>
                 <div class="one_cat">
                 <img src="{% static 'imgs/Rectangle 11 (1).png' %}" alt="velocycle">
-            <a href="">Велоспорт</a>
+            <a href="{%url 'cat_subc' id=3 %}">Велоспорт</a>
         </div>
                 <div class="one_cat">
                 <img src="{% static 'imgs/image 11 (1) — копия.png' %}" alt="alpinizm">
-                <a href="">Альпинизм</a></div>
+                <a href="{%url 'cat_subc' id=4 %}">Альпинизм</a></div>
             </div>
         </div>
         <div class="popular_tovars_slider">
             <h2>Популярные товары</h2>
             <div class="owl-carousel owl-theme second_slider">
                 {% for i in tovars %}
-                <div class="img1"><a href=""><img src="{{i.img.url }}" alt=""><p>{{i.name}}</p><p class="price">{{i.price}}</p></a></div>
+                <div class="img1"><a href="{%url 'tovar' i.id%}"><img src="{{i.img.url }}" alt=""><p>{{i.name}}</p><p class="price">{{i.price}}</p></a></div>
                 {% endfor %}
 
             </div>
@@ -239,7 +239,7 @@
                 </ul>
                 <ul>
                     <li><h3>О компании</h3></li>
-                    <li><a href="">О нас</a></li>
+                    <li><a href="{%url 'about_us'%}">О нас</a></li>
                     <li><a href="">Пользовательское соглашение</a></li>
                     <li><a href="">Политика конфиденциальности</a></li>
                 </ul>
