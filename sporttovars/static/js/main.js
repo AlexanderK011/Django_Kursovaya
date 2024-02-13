@@ -74,22 +74,46 @@ filter_obj[filt_key] = Array.from(document.querySelectorAll('input[data-filter='
 return element.value
 })
 })
-console.log(('filter object  is: ', filter_obj))
+let id_tovar = $('.katalog-tovars').attr('id')
 $.ajax({
-url:'/filter-products',
+url:'/filter-products/'+id_tovar,
 data: filter_obj ,
 dataType:'json',
 beforeSend: function(){
-console.log('sending')
 },
 success:function(response){
-console.log(response)
 $('#filtered_tovars').html(response.data)
 }
 })
 })
 })
 
+
+$(document).ready(function(){
+$('.filter-checkbox1').on('click',function(){
+let filter_obj ={}
+
+$('.filter-checkbox1').each(function(){
+let filt_value = $(this).val()
+
+let filt_key = $(this).data('filter')
+filter_obj[filt_key] = Array.from(document.querySelectorAll('input[data-filter=' + filt_key + ']:checked')).map(function(element){
+return element.value
+})
+})
+let brend_name = $('.katalog-tovars').attr('id')
+$.ajax({
+url:'/filter-products-brend/'+brend_name,
+data: filter_obj ,
+dataType:'json',
+beforeSend: function(){
+},
+success:function(response){
+$('#filtered_tovars').html(response.data)
+}
+})
+})
+})
 
 $('.filter_button').on('click',function(){
     $('.filter').toggleClass('block')

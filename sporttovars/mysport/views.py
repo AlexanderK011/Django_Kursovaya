@@ -44,10 +44,10 @@ def takecategory(request,id):
 
 def tovars(request,id):
     tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats')\
-        .values('id','subcutscats','subcutscats__name','subcutscats__img',
+        .values('id','cat','subcutscats','subcutscats__name','subcutscats__img',
                 'subcutscats__color__color','subcutscats__price','subcutscats__characheristic__country_crator'
                 ,'subcutscats__characheristic__material')
-    tovar_pricemens = tovars.order_by('subcutscats__price')
+    subcid = tovars[0]['cat']
     filt_cat = Subcat.objects.filter(id = id).values('tree_id')
     tovars_color = Subcat.objects.filter(id=id).values('subcutscats__color', 'subcutscats__color__color','subcutscats__color__id').distinct()
     tovars_brends = Subcat.objects.filter(id=id).values('subcutscats__brend', 'subcutscats__brend__name','subcutscats__brend__id').distinct()
@@ -59,64 +59,79 @@ def tovars(request,id):
     data = {
         'tovars': tovars,
         'menu':menu,
-        'tovar_pricemens':tovar_pricemens,
         'filt_cats':filt_cats,
         'tovars_color':tovars_color,
-        'tovars_brends':tovars_brends
+        'tovars_brends':tovars_brends,
+        'subc_id':subcid
 
     }
     return render(request, 'mysport/tovars.html',data)
 
-def filter_prod(request):
+def filter_prod(request,id):
     categories = request.GET.getlist('category[]')
     colors = request.GET.getlist('color[]')
     brends = request.GET.getlist('brends[]')
+    tovars = Sport_item.objects.filter(subcat__cat__id=id).order_by('name').distinct('name')
 
-    # tovars = Subcat.objects.prefetch_related('subcutscats') \
+    # tovars = Subcat.objects.filter(cat=id).prefetch_related('subcutscats') \
     #     .values('id', 'subcutscats', 'subcutscats__name', 'subcutscats__img',
     #             'subcutscats__color__color', 'subcutscats__price', 'subcutscats__characheristic__country_crator'
-    #             , 'subcutscats__characheristic__material','subcutscats__color__id','subcutscats__brend')
+    #             , 'subcutscats__characheristic__material','subcutscats__color__id','subcutscats__brend').order_by('subcutscats__name').distinct('subcutscats__name')
 
     if (len(categories)>0):
-        tovars=tovars.filter(id__in = categories).order_by('subcutscats__name').distinct('subcutscats__name')
+        tovars=tovars.filter(subcat__id__in = categories).order_by('name').distinct('name')
 
     if (len(colors)>0):
-        print(colors)
-        tovars = tovars.filter(subcutscats__color__id__in=colors)
-        print(tovars)
+        tovars = tovars.filter(color__id__in=colors)
 
     if (len(brends)>0):
-        tovars = tovars.filter(subcutscats__brend__in=brends).order_by('subcutscats__name').distinct('subcutscats__name')
-        print(brends)
-        print(tovars)
+        tovars = tovars.filter(brend__in=brends).order_by('name').distinct('name')
 
     data = render_to_string('mysport/async/tovars_list.html',{'tovars':tovars})
     return JsonResponse({'data':data})
 
 
-def tovars_sort(request,id):
-    current_id = id
-    tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats')\
-        .values('id','subcutscats','subcutscats__name','subcutscats__img',
-                'subcutscats__color__color','subcutscats__price','subcutscats__characheristic__country_crator'
-                ,'subcutscats__characheristic__material')
-    tovars = tovars.order_by('subcutscats__price')
-    data = {
-        'menu':menu,
-        'tovars':tovars,
-        'current_id':current_id
-    }
-    return render(request, 'mysport/tovars.html', data)
-
 def tovars_brends(request,name):
     tovars_brend = Sport_item.objects.filter(brend__name = name)
+    filt_cat = Subcat.objects.filter(subcutscats__brend__name=name).values('tree_id')
     tovars_color = Sport_item.objects.filter(brend__name = name).values('color','color__color').distinct()
+    tovars_brends = Subcat.objects.filter(subcutscats__brend__name=name).values('subcutscats__brend', 'subcutscats__brend__name',
+                                                        'subcutscats__brend__id').order_by('subcutscats__brend__name').distinct('subcutscats__brend__name')
+    if request.GET.get('select'):
+        ordering = request.GET.get('select')
+        tovars_brend = tovars_brend.order_by(ordering)
+    brend_name = name
+    for i in filt_cat:
+        filt_cats = Subcat.objects.filter(tree_id = i['tree_id']).filter(level=0)
     data = {
         'tovars_brend':tovars_brend,
         'menu':menu,
-        'tovars_color':tovars_color
+        'tovars_color':tovars_color,
+        'filt_cats': filt_cats,
+        'tovars_brends':tovars_brends,
+        'brend_name':brend_name
     }
     return render(request, 'mysport/tovars.html',data)
+
+def filter_prod_brend(request,name):
+    categories = request.GET.getlist('category[]')
+    colors = request.GET.getlist('color[]')
+    tovars = Sport_item.objects.filter(brend__name=name).order_by('name').distinct('name')
+
+    # tovars = Subcat.objects.filter(cat=id).prefetch_related('subcutscats') \
+    #     .values('id', 'subcutscats', 'subcutscats__name', 'subcutscats__img',
+    #             'subcutscats__color__color', 'subcutscats__price', 'subcutscats__characheristic__country_crator'
+    #             , 'subcutscats__characheristic__material','subcutscats__color__id','subcutscats__brend').order_by('subcutscats__name').distinct('subcutscats__name')
+
+    if (len(categories)>0):
+        tovars=tovars.filter(subcat__id__in = categories).order_by('name').distinct('name')
+
+    if (len(colors)>0):
+        tovars = tovars.filter(color__id__in=colors).order_by('name').distinct('name')
+
+
+    data = render_to_string('mysport/async/tovars_list.html',{'tovars':tovars})
+    return JsonResponse({'data':data})
 
 def one_tovar(request,id):
     tovar = Sport_item.objects.get(id=id)
