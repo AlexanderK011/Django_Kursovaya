@@ -55,6 +55,12 @@ $('.cats').children('a').each(function() {
     //     }));
     //   });
     ;})
+// убирает переход по форме
+$('#filtration_tovars').on('click',(e)=>{
+if (e.target.id === 'price-filter'){
+e.preventDefault()
+}})
+// убирает переход по форме конец
 
 // В бургере открытие вкладки категории
 $('.nav_menu').children('a').each(function() {
@@ -62,10 +68,15 @@ $(this).on('click',function(event){
     $('div#'+$(this).attr('id')).toggle('display')
 });})
 
+// Ajax фильтрация для товаров
 $(document).ready(function(){
-$('.filter-checkbox').on('click',function(){
+$('.filter-checkbox,#price-filter').on('click',function(){
 let filter_obj ={}
 
+let min_price = $('#min_price').val()
+let max_price = $('#max_price').val()
+filter_obj.min_price = min_price;
+filter_obj.max_price = max_price;
 $('.filter-checkbox').each(function(){
 let filt_value = $(this).val()
 
@@ -87,11 +98,17 @@ $('#filtered_tovars').html(response.data)
 })
 })
 })
+// Ajax фильтрация для товаров конец
 
-
+// Ajax фильтрация для брендов
 $(document).ready(function(){
-$('.filter-checkbox1').on('click',function(){
+$('.filter-checkbox1,#price-filter').on('click',function(){
 let filter_obj ={}
+
+let min_price = $('#min_price').val()
+let max_price = $('#max_price').val()
+filter_obj.min_price = min_price;
+filter_obj.max_price = max_price;
 
 $('.filter-checkbox1').each(function(){
 let filt_value = $(this).val()
@@ -118,7 +135,7 @@ $('#filtered_tovars').html(response.data)
 $('.filter_button').on('click',function(){
     $('.filter').toggleClass('block')
 })
-
+// Ajax фильтрация для брендов конец
 
 // Ссылки для картинок
 let img1=document.querySelector('.vkimg')

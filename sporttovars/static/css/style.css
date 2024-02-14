@@ -563,8 +563,9 @@ content {
 }
 .ol_perehod{
 position:absolute;
-top:5px;
-    margin-top: -4px;
+    top: 11px;
+    margin-top: 0px;
+    left:0;
 }
 .filter p{
     padding-bottom: 3%;
@@ -573,8 +574,10 @@ top:5px;
     height: 23px;
     width: 34%;
         padding-left: 6px;
-    margin-right: 3%;
     border: 1px solid #B4B4B4;
+}
+#price-filter{
+    margin-top: 16px;
 }
 .cat_filter, .color_filter, .brends_filter, .price_filter, .filter{
 font-size: 20px;
@@ -779,8 +782,9 @@ font-size: 20px;
 }
 
 .info_tovar img{
-    width: 28%;
+        width: 250px;
 height: fit-content;
+    padding-top: 22px;
 }
 .info_tovar {
     display: flex;
@@ -973,6 +977,9 @@ width:66%;
     .three_cats img {
         width: 64%;
         padding-bottom: 2%;
+    }
+    .ol_perehod{
+    display:none;
     }
 .one_cat {
     display: flex;
