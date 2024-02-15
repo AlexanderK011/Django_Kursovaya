@@ -32,5 +32,6 @@ urlpatterns = [
     path('tovars/<str:name>/',tovars_brends, name='brend_tovars'),
     path('tovar/search/',search_tovars,name='search'),
     path('filter-products/<int:id>',filter_prod,name='filter_prod'),
-    path('filter-products-brend/<str:name>/',filter_prod_brend,name='filter_prod_brend')
+    path('filter-products-brend/<str:name>/',filter_prod_brend,name='filter_prod_brend'),
+    path('filter-products-search/<str:query>/',filter_search,name='filter_search'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -132,6 +132,37 @@ $('#filtered_tovars').html(response.data)
 })
 })
 
+// Ajax фильтрация для поиска
+$(document).ready(function(){
+$('.filter-checkbox2,#price-filter').on('click',function(){
+let filter_obj ={}
+
+let min_price = $('#min_price').val()
+let max_price = $('#max_price').val()
+filter_obj.min_price = min_price;
+filter_obj.max_price = max_price;
+$('.filter-checkbox2').each(function(){
+let filt_value = $(this).val()
+
+let filt_key = $(this).data('filter')
+filter_obj[filt_key] = Array.from(document.querySelectorAll('input[data-filter=' + filt_key + ']:checked')).map(function(element){
+return element.value
+})
+})
+let id_search = $('.katalog_search').attr('id')
+$.ajax({
+url:'/filter-products-search/'+id_search,
+data: filter_obj ,
+dataType:'json',
+beforeSend: function(){
+},
+success:function(response){
+$('#filtered_tovars').html(response.data)
+}
+})
+})
+})
+
 $('.filter_button').on('click',function(){
     $('.filter').toggleClass('block')
 })

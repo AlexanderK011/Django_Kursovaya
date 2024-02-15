@@ -28,7 +28,7 @@
                     {%recursetree filt_cats%}
                     {%for i in node.children.all%}
                     <div class="">
-                    <input class="filter-checkbox{% if request.resolver_match.url_name == 'brend_tovars' %}1{%endif%}" data-filter="category" value="{{i.id}}" type="checkbox" id="scales" name="{{i}}"  />
+                    <input class="filter-checkbox{% if request.resolver_match.url_name == 'brend_tovars' %}1{%endif%}{% if request.resolver_match.url_name == 'search' %}2{%endif%}" data-filter="category" value="{{i.id}}" type="checkbox" id="scales" name="{{i}}"  />
                     <label for="{{i}}">{{i}}</label>
                         </div>
                     {%endfor%}
@@ -40,7 +40,7 @@
                     {% if request.resolver_match.url_name == 'brend_tovars' or  request.resolver_match.url_name == 'search' %}
                     {%for i in tovars_color%}
                     <div class="">
-                    <input type="checkbox" class="filter-checkbox1" value="{{i.color}}" data-filter="color" id="scales" name="{{i.color__color}}"  />
+                    <input type="checkbox" class="filter-checkbox{%if request.resolver_match.url_name == 'search' %}2{%else%}1{%endif%}" value="{{i.color}}" data-filter="color" id="scales" name="{{i.color__color}}"  />
                     <label for="{{i.color__color}}">{{i.color__color}}</label>
                         </div>
                         {%endfor%}
@@ -60,7 +60,7 @@
                     <p>Бренды</p>
                     {%for i in tovars_brends%}
                     <div class="">
-                    <input type="checkbox" class="filter-checkbox" value="{{i.subcutscats__brend}}" id="scales" data-filter="brends" name="{{i.subcutscats__brend__name}}"  />
+                    <input type="checkbox" class="filter-checkbox{%if request.resolver_match.url_name == 'search' %}2{%endif%}" value="{{i.subcutscats__brend}}" id="scales" data-filter="brends" name="{{i.subcutscats__brend__name}}"  />
                     <label for="{{i.subcutscats__brend__name}}">{{i.subcutscats__brend__name}}</label>
                         </div>
                     {%endfor%}
@@ -89,7 +89,7 @@
                         </form>
                     {%endif%}
                 </div>
-                <h2 class="katalog-tovars" id="{{subc_id}}{{brend_name}}">{{subc_name.name}}{{brend_name}}</h2>
+                <h2 class="katalog-tovars" id="{{subc_id}}{{brend_name}}">{{subc_name.name}}{{brend_name}}{% if request.resolver_match.url_name == 'search' %} <h2 class="katalog_search" id="{{query}}">Поиск</h2> {%endif%}</h2>
                 <div class="content_tovar" id="filtered_tovars">
                         {%for i in tovars%}
                     <div class="tovar">

@@ -189,6 +189,29 @@ def search_tovars(request):
     }
     return render(request,'mysport/tovars.html',data)
 
+def filter_search(request,query):
+    categories = request.GET.getlist('category[]')
+    colors = request.GET.getlist('color[]')
+    brends = request.GET.getlist('brends[]')
+    tovars = Sport_item.objects.filter(Q(name__icontains=query)|Q(brend__name__icontains=query)).order_by('name').distinct('name')
+    min_price = request.GET['min_price']
+    max_price = request.GET['max_price']
+    tovars = tovars.filter(price__gte=min_price)
+    tovars = tovars.filter(price__lte=max_price)
+
+    if (len(categories) > 0):
+        tovars = tovars.filter(subcat__id__in=categories).order_by('name').distinct('name')
+
+    if (len(colors) > 0):
+        tovars = tovars.filter(color__id__in=colors)
+
+    if (len(brends) > 0):
+        tovars = tovars.filter(brend__in=brends).order_by('name').distinct('name')
+
+
+    data = render_to_string('mysport/async/tovars_list.html',{'tovars':tovars})
+    return JsonResponse({'data':data})
+
 def onas(request):
     data = {
         'menu':menu
