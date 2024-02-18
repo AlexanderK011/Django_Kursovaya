@@ -171,14 +171,24 @@ def search_tovars(request):
         if query == '':
             query = 'none'
     results_tovars = Sport_item.objects.filter(Q(name__icontains=query)|Q(brend__name__icontains=query)).all()
-    filt_cat = Subcat.objects.filter(subcutscats__name__icontains=query).values('tree_id')
-    tovars_color = Sport_item.objects.filter(name__icontains=query).values('color', 'color__color').distinct()
+
+    if not Subcat.objects.filter(subcutscats__name__icontains=query):
+        filt_cat = Subcat.objects.filter(subcutscats__brend__name__icontains=query).values('tree_id')
+    else:
+        filt_cat = Subcat.objects.filter(subcutscats__name__icontains=query).values('tree_id')
+    if not Sport_item.objects.filter(name__icontains=query).values('color', 'color__color').distinct():
+        tovars_color = Sport_item.objects.filter(brend__name__icontains=query).values('color', 'color__color').distinct()
+    else:
+        tovars_color = Sport_item.objects.filter(name__icontains=query).values('color',
+                                                                                      'color__color').distinct()
     tovars_brends = Subcat.objects.filter(subcutscats__name__icontains=query).values('subcutscats__brend',
                                                                                 'subcutscats__brend__name',
                                                                                 'subcutscats__brend__id').order_by(
         'subcutscats__brend__name').distinct('subcutscats__brend__name')
+    filt_cats1 = []
     for i in filt_cat:
-        filt_cats = Subcat.objects.filter(tree_id = i['tree_id']).filter(level=0)
+        filt_cats1.append(i['tree_id'])
+        filt_cats = Subcat.objects.filter(tree_id__in = filt_cats1).filter(level=0)
     data = {
         'results_tovars': results_tovars,
         'menu': menu,

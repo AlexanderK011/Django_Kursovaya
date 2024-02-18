@@ -193,8 +193,9 @@ header{
     display: flex;
     flex-wrap: wrap;
     background-color: white;
-        height: 389px;
-            overflow: auto;
+    height: 389px;
+    overflow: auto;
+    padding-bottom: 1%;
 }
   .dropdown-content a {
     color: black;
