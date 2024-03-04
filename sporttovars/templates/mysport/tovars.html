@@ -20,7 +20,7 @@
                     <input type="number" name="min_price" id="min_price" value="0" placeholder="от">
                         -
                     <input type="number" name="max_price" id="max_price" placeholder="до" value="100000">
-                        <input class='subm' id="price-filter"  type="submit" value="Посмотреть">
+                        <input class='subm' id="price-filter{% if request.resolver_match.url_name == 'tovars'%}1{%endif%}" type="submit" value="Посмотреть">
                 </div>
                 <div class="cat_filter">
                     <p>Категория</p>
@@ -98,7 +98,7 @@
                     </div>
                     <div class="tovar_info">
                         <a href="{%url 'tovar' i.subcutscats%}"><h4>{{i.subcutscats__name}} </h4></a>
-                        <small>{{i.subcutscats__characheristic__country_crator}}; {{i.subcutscats__characheristic__material}}, 102-104 см</small>
+                        <small>{{i.subcutscats__characheristic__country_crator}}; {{i.subcutscats__characheristic__material}}</small>
                         <p>Цвет: {{i.subcutscats__color__color}}</p>
                     </div>
                     <div class="tovar_watch">
@@ -115,7 +115,7 @@
                     </div>
                     <div class="tovar_info">
                         <a href="{%url 'tovar' i.id%}"><h4>{{i.name}} </h4></a>
-                        <small>{{i.characheristic.country_crator}}; {{i.characheristic.material}}, 102-104 см</small>
+                        <small>{{i.characheristic.country_crator}}; {{i.characheristic.material}}</small>
                         <p>Цвет: {{i.color}}</p>
                     </div>
                     <div class="tovar_watch">

@@ -134,11 +134,6 @@ def filter_prod_brend(request,name):
     tovars = tovars.filter(price__gte=min_price)
     tovars = tovars.filter(price__lte=max_price)
 
-    # tovars = Subcat.objects.filter(cat=id).prefetch_related('subcutscats') \
-    #     .values('id', 'subcutscats', 'subcutscats__name', 'subcutscats__img',
-    #             'subcutscats__color__color', 'subcutscats__price', 'subcutscats__characheristic__country_crator'
-    #             , 'subcutscats__characheristic__material','subcutscats__color__id','subcutscats__brend').order_by('subcutscats__name').distinct('subcutscats__name')
-
     if (len(categories)>0):
         tovars=tovars.filter(subcat__id__in = categories).order_by('name').distinct('name')
 
@@ -155,7 +150,8 @@ def one_tovar(request,id):
     for i in subc:
         subc = i
     harakt = Characheristic.objects.get(good=id)
-    size = Size.objects.filter(good=id)
+    size = Size.objects.filter(good__id=id)
+    print(size)
     data = {
         'menu':menu,
         'tovar':tovar,
@@ -204,8 +200,10 @@ def filter_search(request,query):
     colors = request.GET.getlist('color[]')
     brends = request.GET.getlist('brends[]')
     tovars = Sport_item.objects.filter(Q(name__icontains=query)|Q(brend__name__icontains=query)).order_by('name').distinct('name')
+
     min_price = request.GET['min_price']
     max_price = request.GET['max_price']
+
     tovars = tovars.filter(price__gte=min_price)
     tovars = tovars.filter(price__lte=max_price)
 

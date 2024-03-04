@@ -580,6 +580,9 @@ position:absolute;
 #price-filter{
     margin-top: 16px;
 }
+#price-filter1{
+margin-top:16px;
+}
 .cat_filter, .color_filter, .brends_filter, .price_filter, .filter{
 font-size: 20px;
    padding: 11px 0px;
@@ -667,8 +670,8 @@ font-size: 20px;
     padding-right: 3%;
 }
 .tovar_img a img {
-    width: 141px;
-    height: 88px;
+    width: 200px;
+    height: 122px;
     object-fit: cover;
     object-position: center;
 }

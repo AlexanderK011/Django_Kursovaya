@@ -62,6 +62,13 @@ e.preventDefault()
 }})
 // убирает переход по форме конец
 
+// убирает переход по форме
+$('#filtration_tovars').on('click',(e)=>{
+if (e.target.id === 'price-filter1'){
+e.preventDefault()
+}})
+// убирает переход по форме конец
+
 // В бургере открытие вкладки категории
 $('.nav_menu').children('a').each(function() {
 $(this).on('click',function(event){
@@ -70,7 +77,7 @@ $(this).on('click',function(event){
 
 // Ajax фильтрация для товаров
 $(document).ready(function(){
-$('.filter-checkbox,#price-filter').on('click',function(){
+$('.filter-checkbox,#price-filter1').on('click',function(){
 let filter_obj ={}
 
 let min_price = $('#min_price').val()
@@ -83,6 +90,7 @@ let filt_value = $(this).val()
 let filt_key = $(this).data('filter')
 filter_obj[filt_key] = Array.from(document.querySelectorAll('input[data-filter=' + filt_key + ']:checked')).map(function(element){
 return element.value
+console.log(filt_key)
 })
 })
 let id_tovar = $('.katalog-tovars').attr('id')
