@@ -15,9 +15,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 from mysport.views import *
 
@@ -34,4 +35,9 @@ urlpatterns = [
     path('filter-products/<int:id>',filter_prod,name='filter_prod'),
     path('filter-products-brend/<str:name>/',filter_prod_brend,name='filter_prod_brend'),
     path('filter-products-search/<str:query>/',filter_search,name='filter_search'),
+    path('register/',reg,name = 'reg'),
+    path('accounts/profile/',profile,name = 'profile'),
+    path('login/', auth_views.LoginView.as_view(template_name='mysport/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='mysport/login.html'), name='logout'),
+    re_path(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

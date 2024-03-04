@@ -1,10 +1,16 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.template.loader import render_to_string
 from mysport.models import Brend,Sport_item,Category,Subcat,Characheristic,Color,Size #Subcat_cat
+
+from mysport.forms import UserRegForm
+
+from cart.forms import CartAddProductForm
 
 menu = {
     'brends' : Brend.objects.all(),
@@ -44,7 +50,7 @@ def takecategory(request,id):
 
 def tovars(request,id):
     tovars = Subcat.objects.filter(id=id).prefetch_related('subcutscats')\
-        .values('id','cat','subcutscats','subcutscats__name','subcutscats__img',
+        .values('id','cat','subcutscats','subcutscats__name','subcutscats__id','subcutscats__img',
                 'subcutscats__color__color','subcutscats__price','subcutscats__characheristic__country_crator'
                 ,'subcutscats__characheristic__material')
     subc_name = Subcat.objects.filter(id=id).values('name')
@@ -59,6 +65,7 @@ def tovars(request,id):
         tovars = tovars.order_by(ordering)
     for i in filt_cat:
         filt_cats = Subcat.objects.filter(tree_id = i['tree_id']).filter(level=0)
+    cart_product_form = CartAddProductForm()
     data = {
         'tovars': tovars,
         'menu':menu,
@@ -66,7 +73,8 @@ def tovars(request,id):
         'tovars_color':tovars_color,
         'tovars_brends':tovars_brends,
         'subc_id':subcid,
-        'subc_name':subc_name
+        'subc_name':subc_name,
+        'cart_product_form':cart_product_form
 
     }
     return render(request, 'mysport/tovars.html',data)
@@ -226,3 +234,23 @@ def onas(request):
     }
 
     return render(request, 'mysport/onas.html',data)
+
+def reg(request):
+    data = {
+        'menu': menu
+    }
+    if request.method =="POST":
+        form = UserRegForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Аккаунт создан')
+            return redirect('index')
+    else:
+        form = UserRegForm()
+        data['form'] = form
+        return render(request,'mysport/reg.html',data)
+
+@login_required
+def profile(request):
+    return render(request, 'mysport/profile.html')

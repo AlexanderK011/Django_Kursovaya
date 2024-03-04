@@ -107,6 +107,11 @@
                     </div>
 
                     </div>
+                    <form action="{% url "cart:cart_add" i.subcutscats__id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Add to cart">
+                </form>
                      {%endfor%}
                     {%for i in tovars_brend%}
                     <div class="tovar">
