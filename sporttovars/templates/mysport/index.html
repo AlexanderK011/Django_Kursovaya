@@ -141,6 +141,20 @@
                 <img src="{% static 'imgs/search.svg' %}"  alt="Поиск">
             </button>
             </form>
+
+<!--            Корзина и пользователь     -->
+            <div class="div_user">
+            <img class="usericon" src="{%static 'imgs/iconuser.png'%}" alt="user">
+                <div class="dropdown_content_user">
+                    <div class="user_choose">
+                        <a href="{%url 'login'%}">Войти</a>
+                        <a href="{%url 'reg'%}">Регистрация</a>
+                    </div>
+                </div>
+            </div>
+            <img class="carticon" src="{%static 'imgs/iconcart3.png'%}" alt=cart"">
+<!--            Корзина и пользователь     -->
+
         </div>
     </header>
     <!-- endheader -->

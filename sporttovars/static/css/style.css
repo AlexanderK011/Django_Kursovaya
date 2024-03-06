@@ -74,6 +74,8 @@ header{
     height: 48%;
     display: flex;
     width: 100%;
+        align-items: center;
+
 }
 .nullblock10{
     display: flex;
@@ -106,6 +108,7 @@ header{
 }
 .catalogop{
     display: flex;
+    height: 100%;
 }
 
 .head2 li{
@@ -163,7 +166,7 @@ header{
     min-width: 903px;
     left: 0;
     transform: translate(-5%,1%);
-    top: 43px;
+    top: 37px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 10;
 }
@@ -239,12 +242,122 @@ header{
     text-decoration: none;
     color: black;
 }
+
+.dropdown_content_user{
+Display:none;
+}
+.user_choose {
+    display: flex;
+    position: absolute;
+    background-color: white;
+    padding: 5px;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    flex-direction: column;
+        margin-left: -61px;
+        animation: ani 0.5s forwards;
+}
+.register_form{
+max-width: 400px;
+margin: 0 auto;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #daf3ff;
+margin-top:20px;
+margin-bottom:20px;
+}
+legend{
+    margin-bottom: 14px;
+}
+.register_form label{
+display: block;
+        margin-bottom: 5px;
+        color: #333;
+}
+.register_form input{
+ width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+}
+
+.register_form button{
+background-color: #60bde9;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+}
+
+.register_form button:hover{
+background-color: #12a7ff;
+}
+
+  .login {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #daf3ff;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+   .login label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+   .login .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+   .login button {
+        background-color: #60bde9;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+   .login button:hover {
+        background-color: #12a7ff;
+    }
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.div_user:hover .dropdown_content_user{display: flex;}
+
   .dropdown-content a:hover {color: blue;;}
   .catalogop:hover .dropdown-content {display: flex;}
   .catalogop:hover .open_catalog {transform: rotate(-90deg);}
-
   .divka:hover .dropdown-obuv{display: flex;}
-  
+
+.usericon{
+width:36px;
+height:34px;
+}
+.carticon{
+width:29px;
+ height: 31px;
+}
+
 /* Первая секция */
 .first_section img{
     width: 100%;
@@ -776,6 +889,18 @@ font-size: 20px;
     .cat_perehod:hover {
         box-shadow: 0px 8px 10px 11px #b3b3b3;
     }
+
+    .imageorderitem{
+    width:50px;
+    }
+    .order h1{
+    margin:10px 10px;
+    }
+    .order{
+    text-align: center;
+    text-align: -webkit-center;
+    }
+
 .cat_perehod a {
     display: flex;
     justify-content: center;

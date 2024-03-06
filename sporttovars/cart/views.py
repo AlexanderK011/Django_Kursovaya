@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from mysport.models import Sport_item
 from .cart import Cart
 from .forms import CartAddProductForm
+from mysport.views import menu
 
 
 @require_POST
@@ -13,7 +14,7 @@ def cart_add(request, product_id):
     if form.is_valid():
         cd = form.cleaned_data
         cart.add(sport_item=tovar,
-                 quantity=cd['quantity'],
+                 # quantity=cd['quantity'],
                  update_quantity=cd['update'])
     return redirect('cart:cart_detail')
 
@@ -25,4 +26,8 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, 'mysport/cart.html', {'cart': cart})
+    data ={
+        'cart':cart,
+        'menu':menu
+    }
+    return render(request, 'mysport/cart.html', data)

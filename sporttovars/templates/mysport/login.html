@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'mysport/index.html' %}
+
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>wrywe</title>
 </head>
-<body>
- <form method="POST">
-            {% csrf_token %}
-     {{form}}
+{% block main %}
 
-<input type="submit" value="">
+ <form class="login" method="POST">
+     <legend>Авторизация</legend>
+ {% csrf_token %}
+    <label for="id_username">Логин:</label>
+    <input type="text" id="id_username" name="username" class="form-input" required>
+
+    <label for="id_password">Пароль:</label>
+    <input type="password" id="id_password" name="password" class="form-input" required>
+
+    <button type="submit">Войти</button>
+     <a href="{%url 'logout'%}">выход</a>
  </form>
 
-</body>
-</html>
+{%endblock%}

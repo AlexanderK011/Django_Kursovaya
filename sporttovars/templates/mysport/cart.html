@@ -1,11 +1,14 @@
+{% extends 'mysport/index.html' %}
 {%load static%}
-<!DOCTYPE html>
-<html lang="en">
+
+
+{% block main %}
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<div class="order">
     <h1>Your shopping cart</h1>
     <table class="cart">
         <thead>
@@ -19,14 +22,15 @@
         </tr>
         </thead>
         <tbody>
+
         {% for item in cart %}
             {% with product=item.product %}
                 <tr>
                     <td>
                         <a href="{{ product.get_absolute_url }}">
-                            <img src="
-                                {% if product.image %}
-                                    {{ product.image.url }}
+                            <img class ='imageorderitem' src="
+                                {% if product.img %}
+                                   {{ product.img.url }}
                                 {% else %}
                                     {% static "img/no_image.png" %}
                                 {% endif %}">
@@ -51,5 +55,5 @@
         <a href="{% url "tovars" id=1 %}" class="button light">Continue shopping</a>
         <a href="#" class="button">Checkout</a>
     </p>
-</body>
-</html>
+</div>
+{% endblock %}

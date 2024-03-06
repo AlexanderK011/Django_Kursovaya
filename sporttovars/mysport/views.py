@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -159,7 +161,7 @@ def one_tovar(request,id):
         subc = i
     harakt = Characheristic.objects.get(good=id)
     size = Size.objects.filter(good__id=id)
-    print(size)
+
     data = {
         'menu':menu,
         'tovar':tovar,
@@ -241,7 +243,6 @@ def reg(request):
     }
     if request.method =="POST":
         form = UserRegForm(request.POST)
-        print(form)
         if form.is_valid():
             form.save()
             messages.success(request,'Аккаунт создан')
@@ -250,6 +251,11 @@ def reg(request):
         form = UserRegForm()
         data['form'] = form
         return render(request,'mysport/reg.html',data)
+
+class LoginUser(LoginView):
+    form_class = AuthenticationForm
+    template_name = 'mysport/login.html'
+    extra_context = {'menu': menu}
 
 @login_required
 def profile(request):
