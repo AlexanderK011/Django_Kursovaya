@@ -38,6 +38,6 @@ urlpatterns = [
     path('register/',reg,name = 'reg'),
     path('accounts/profile/',profile,name = 'profile'),
     path('login/', LoginUser.as_view(template_name='mysport/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='mysport/login.html'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='mysport/profile.html'), name='logout'),
     re_path(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

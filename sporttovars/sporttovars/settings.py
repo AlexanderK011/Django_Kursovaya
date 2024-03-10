@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.context_processors.cart',
             ],
         },
     },
@@ -84,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sportbd',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '5433',
     }

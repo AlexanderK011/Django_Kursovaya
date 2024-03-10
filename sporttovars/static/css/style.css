@@ -121,6 +121,22 @@ header{
     transition: 0.3s;
 }
 
+.cartdiv{
+position:relative;
+}
+.cart_itemscount {
+    position: absolute;
+    top: -7px;
+    width: 15px;
+    text-align: center;
+    height: 19px;
+    right: -6px;
+    border-radius: 69px;
+    background-color: #4f79ff;
+    text-decoration: none;
+    color: white;
+}
+
 .search_form{
     display: flex;
     justify-content: end;
@@ -353,6 +369,12 @@ background-color: #12a7ff;
 width:36px;
 height:34px;
 }
+.logout_cls{
+background-color:unset;
+border:0px;
+color:blue;
+}
+
 .carticon{
 width:29px;
  height: 31px;
@@ -796,6 +818,27 @@ font-size: 20px;
     margin-right: 2%;
     margin-bottom: 0.3%;
 }
+td{
+    padding-right: 10px;
+}
+tr{
+margin: 5px 0;
+}
+table {
+    width: 64%;
+    font-size:18px;
+    margin-top:30px;
+    border: 0px;
+    border-collapse: collapse;
+}
+.order{
+min-height:599px;
+}
+table td{
+border-bottom:1px solid #e8e9eb;
+padding: 0.6rem 1rem;
+    text-align: center;
+}
 /* tovar end */
 .select-css { 
     display: block; 
@@ -899,6 +942,7 @@ font-size: 20px;
     .order{
     text-align: center;
     text-align: -webkit-center;
+        margin: 20px 0;
     }
 
 .cat_perehod a {
@@ -1181,11 +1225,6 @@ width:66%;
 .opisan_tovar {
     font-size: calc(14px + 6 * (100vw / 1920));
 }
-}
-/* Конец адаптации до 1020 px */
-
-/* адаптация до 800 px */
-@media (min-width: 500px) and (max-width: 800px) {
     content {
         flex-direction: column;
     }
@@ -1223,6 +1262,12 @@ width:66%;
     .filter_tovars_bm {
         margin-top: 22px;
     }
+
+}
+/* Конец адаптации до 1020 px */
+
+/* адаптация до 800 px */
+@media (min-width: 500px) and (max-width: 800px) {
     .charct_one {
     width: 95%;
 }
@@ -1294,6 +1339,7 @@ width:66%;
 #filtration_tovars a {
     margin-left: 24px;
 }
+
 }
 
 /* Конец адаптации до 500 px */
@@ -1309,8 +1355,42 @@ width:66%;
         display: none !important;
     }
 }
-@media (min-width:801px) and (max-width:2560px) {
+@media (min-width:1020px){
     #filtration_tovars a {
         display: none;
     }
 }
+
+@media (max-width:525px) {
+ table {
+    border: 0;
+    width:100%;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+  }
+  table td {
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    border-bottom: 1px dotted #ccc;
+    border-right: 1px solid transparent;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+}
+.td_img {
+    border-top: 2px solid;
+}
+
+}
+

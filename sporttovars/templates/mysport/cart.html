@@ -9,16 +9,16 @@
     <title>Title</title>
 </head>
 <div class="order">
-    <h1>Your shopping cart</h1>
+    <h1>Ваша корзина</h1>
     <table class="cart">
         <thead>
         <tr>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Remove</th>
-            <th>Unit price</th>
-            <th>Price</th>
+            <th></th>
+            <th>Товар</th>
+            <th>Кол-во</th>
+            <th>Удалить</th>
+            <th>Цена,шт</th>
+            <th>Цена</th>
         </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
         {% for item in cart %}
             {% with product=item.product %}
                 <tr>
-                    <td>
+                    <td class="td_img">
                         <a href="{{ product.get_absolute_url }}">
                             <img class ='imageorderitem' src="
                                 {% if product.img %}
@@ -36,23 +36,25 @@
                                 {% endif %}">
                         </a>
                     </td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td><a href="{% url "cart:cart_remove" product.id%}">Remove</a></td>
-                    <td class="num">${{ item.price }}</td>
-                    <td class="num">${{ item.total_price }}</td>
+                    <td data-label="Товар">{{ product.name }}</td>
+                    <td data-label="Кол-во">{{ item.quantity }}</td>
+                    <td data-label="Удалить"><a href="{% url "cart:cart_remove" product.id%}">Удалить</a></td>
+                    <td data-label="Цена,шт" class="num">{{ item.price }}Р</td>
+                    <td data-label="Цена" class="num">{{ item.total_price }}Р</td>
                 </tr>
             {% endwith %}
         {% endfor %}
         <tr class="total">
-            <td>Total</td>
-            <td colspan="4"></td>
-            <td class="num">${{ cart.get_total_price }}</td>
+            <td>Всего</td>
+            <td colspan="1"></td>
+            <td>{{cart|length}}</td>
+            <td colspan="2"></td>
+            <td data-label="Итоговая цена" class="num">{{ cart.get_total_price }}Р</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "tovars" id=1 %}" class="button light">Continue shopping</a>
+        <a href="{% url "tovars" id=1 %}" class="button light">Веруться в магазин</a>
         <a href="#" class="button">Checkout</a>
     </p>
 </div>

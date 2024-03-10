@@ -147,12 +147,27 @@
             <img class="usericon" src="{%static 'imgs/iconuser.png'%}" alt="user">
                 <div class="dropdown_content_user">
                     <div class="user_choose">
+                        <a href="{%url 'profile'%}">Профиль</a>
                         <a href="{%url 'login'%}">Войти</a>
                         <a href="{%url 'reg'%}">Регистрация</a>
+                             <form action="{%url 'logout'%}" method="POST">
+                             {% csrf_token %}
+                             <input class="logout_cls" type="submit" value="Logout" >
+                             </form>
+
                     </div>
                 </div>
             </div>
-            <img class="carticon" src="{%static 'imgs/iconcart3.png'%}" alt=cart"">
+            <div class="cartdiv">
+            <a href="{%url 'cart:cart_detail'%}"><img class="carticon" src="{%static 'imgs/iconcart3.png'%}" alt=cart""></a>
+                <div class="cart">
+    {% with total_items=cart|length %}
+            <a class="cart_itemscount" href="{% url "cart:cart_detail" %}">
+                {{ total_items }}
+            </a>
+    {% endwith %}
+</div>
+                </div>
 <!--            Корзина и пользователь     -->
 
         </div>

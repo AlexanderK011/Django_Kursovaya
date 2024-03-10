@@ -10,9 +10,11 @@ from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from mysport.models import Brend,Sport_item,Category,Subcat,Characheristic,Color,Size #Subcat_cat
 
-from mysport.forms import UserRegForm
+from mysport.forms import UserRegForm,profileForm
 
 from cart.forms import CartAddProductForm
+
+
 
 menu = {
     'brends' : Brend.objects.all(),
@@ -243,13 +245,19 @@ def reg(request):
     }
     if request.method =="POST":
         form = UserRegForm(request.POST)
-        if form.is_valid():
-            form.save()
+        profile_form = profileForm(request.POST)
+        if form.is_valid() and profile_form.is_valid():
+            user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
             messages.success(request,'Аккаунт создан')
             return redirect('index')
     else:
         form = UserRegForm()
+        profile_form = profileForm()
         data['form'] = form
+        data['profile_form'] = profile_form
         return render(request,'mysport/reg.html',data)
 
 class LoginUser(LoginView):
