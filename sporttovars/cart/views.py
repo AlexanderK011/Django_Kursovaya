@@ -1,9 +1,12 @@
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from mysport.models import Sport_item
 from .cart import Cart
-from .forms import CartAddProductForm
+from .forms import CartAddProductForm,OrderCreateForm
 from mysport.views import menu
+
+from mysport.models import OrderItem
 
 
 @require_POST
@@ -32,33 +35,23 @@ def cart_detail(request):
     }
     return render(request, 'mysport/cart.html', data)
 
-
-# form = UserRegForm(request.POST)
-#         profile_form = profileForm(request.POST)
-#         if form.is_valid() and profile_form.is_valid():
-#             user = form.save()
-#             profile = profile_form.save(commit=False)
-#             profile.user = user
-#             profile.save()
-#             messages.success(request,'Аккаунт создан')
-
 def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
-        user = request.user
         form = OrderCreateForm(request.POST)
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
+            order.user = request.user
+            order.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
-                                         product=item['product'],
+                                         sport_item=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
-            # очистка корзины
-            cart.clear()
-            return render(request, 'orders/order/created.html',
-                          {'order': order})
+            # cart.clear()
+            return render(request, 'mysport/profile.html',
+                          {'order': order,'menu':menu})
     else:
         form = OrderCreateForm
-    return render(request, 'orders/order/create.html',
-                  {'cart': cart, 'form': form})
+    return render(request, 'mysport/profile.html',
+                  {'cart': cart, 'form': form,'menu':menu})
