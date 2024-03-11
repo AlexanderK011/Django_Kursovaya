@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h=$$_s=f(&pp^on00-$c#w57_3l0n=r47+c-+)we3kbu!02ygu
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = "mysport.User"
 CART_SESSION_ID = 'cart'
 
 # Application definition
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sportbd',
         'USER': 'postgres',
-        'PASSWORD': '123',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5433',
     }

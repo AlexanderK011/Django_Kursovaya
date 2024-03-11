@@ -147,14 +147,16 @@
             <img class="usericon" src="{%static 'imgs/iconuser.png'%}" alt="user">
                 <div class="dropdown_content_user">
                     <div class="user_choose">
+                        {% if request.user.is_authenticated %}
                         <a href="{%url 'profile'%}">Профиль</a>
+                        <form action="{%url 'logout'%}" method="POST">
+                             {% csrf_token %}
+                             <input class="logout_cls" type="submit" value="Выйти" >
+                             </form>
+                        {%else%}
                         <a href="{%url 'login'%}">Войти</a>
                         <a href="{%url 'reg'%}">Регистрация</a>
-                             <form action="{%url 'logout'%}" method="POST">
-                             {% csrf_token %}
-                             <input class="logout_cls" type="submit" value="Logout" >
-                             </form>
-
+                        {%endif%}
                     </div>
                 </div>
             </div>
@@ -263,7 +265,7 @@
                 <ul>
                     <li><h3>Помощь</h3></li>
                     <li><a href="">Гарантийное обслуживание</a></li>
-                    <li><a href="">Поддержка</a></li>
+                    <li><a class="feedbtxt">Поддержка</a></li>
                     <li><a href="">Гарантия цены</a></li>
                 </ul>
                 <ul>
@@ -283,7 +285,25 @@
                 </ul>
             </div>
             <div class="copyright"><p>© 2024 Все права защищены.</p></div>
+
             </footer>
+                          <!-- modal -->
+<div class="modal" id="modal">
+    <div class="modal_window">
+        <div class="closemodw"><p class="closemodal">X</p></div>
+        <h4>Поддержка</h4>
+        <form class="formfeed" action="{%url 'index' %}" method="POST">
+           {%csrf_token%}
+            <p>Ваша Почта<small><br>введите вашу электронную почту</small></p>
+            <input name="email" id="email" type="email" placeholder=" Электронная почта">
+            <p>Ваш вопрос<small><br>введите ваше обращение к нам</small></p>
+            <textarea name="text" placeholder=" Мое сообщение" id="question" cols="40" rows="3"></textarea>
+            <br>
+            <input type="submit" class="sendfeedback" value="Отправить">
+        </form>
+        <p id="success_message"></p>
+    </div>
+    <!-- modal end -->
         <!-- endfooter -->
         {% endblock %}
     </main>

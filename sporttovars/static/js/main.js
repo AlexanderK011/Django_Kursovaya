@@ -8,6 +8,36 @@ burger.classList.toggle('burg_open')
 })
 
 
+// modal window
+
+// при клике на обратную связь открывается модалка
+let feedbtxt = document.querySelector('.feedbtxt')
+document.addEventListener('DOMContentLoaded',function(){
+    feedbtxt.addEventListener("click",function(){
+        document.querySelector('.modal').classList.toggle('openmodal')
+    })
+})
+// при клике пустое пространство
+document.addEventListener('DOMContentLoaded',function(){
+    window.addEventListener("click",function(event){
+        if ((event.target == document.querySelector('.modal'))){
+            document.querySelector('.modal').classList.toggle('openmodal')
+        }
+
+    })
+})
+// при клике на закрыть
+let closemodal = document.querySelector('.closemodal')
+document.addEventListener('DOMContentLoaded',function(){
+    closemodal.addEventListener("click",function(){
+            document.querySelector('.modal').classList.toggle('openmodal')
+
+    })
+})
+
+// modal window end
+
+
 // $(document).ready(function(){
 // $('.cats').children('a').each(function() {
 //   $(this).hover(function(){

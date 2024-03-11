@@ -56,6 +56,9 @@
     <p class="text-right">
         <a href="{% url "tovars" id=1 %}" class="button light">Веруться в магазин</a>
         <a href="#" class="button">Checkout</a>
+        {% if request.user.is_authenticated %}
+        <p>auth</p>
+        {%endif%}
     </p>
 </div>
 {% endblock %}
