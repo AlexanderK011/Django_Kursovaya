@@ -55,14 +55,7 @@
     </table>
     <p class="text-right">
         <a href="{% url "tovars" id=1 %}" class="button light">Веруться в магазин</a>
-        <a href="#" class="button">Checkout</a>
-        {% if request.user.is_authenticated %}
-    <form action="{%url 'cart:order_create'%}" method="POST">
-    {%csrf_token%}
-    <button type="submit">Заказать</button>
-</form>
-
-        {%endif%}
+        <a href="{%url 'cart:order_create'%}" class="button">Checkout</a>
     </p>
 </div>
 {% endblock %}

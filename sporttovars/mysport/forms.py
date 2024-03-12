@@ -17,3 +17,4 @@ class FeedbackForm(forms.ModelForm):
         fields = ['email','text']
 
 
+

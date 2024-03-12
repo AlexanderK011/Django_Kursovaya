@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <form action="{%url 'cart:order_create'%}" method="POST">
+    {%csrf_token%}
+    <button type="submit">Заказать</button>
+</form>
+    {%else%}
+    <form action="{%url 'cart:order_create'%}" method="POST">
+    {%csrf_token%}
+    {{form_anonuser}}
+        <button type="submit"></button>
+        </form>
+        {%endif%}
+</body>
+</html>

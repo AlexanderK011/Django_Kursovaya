@@ -3,10 +3,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from mysport.models import Sport_item
 from .cart import Cart
-from .forms import CartAddProductForm,OrderCreateForm
+from .forms import CartAddProductForm, OrderCreateForm, AnonOrd
 from mysport.views import menu
 
-from mysport.models import OrderItem
+from mysport.models import OrderItem,AnonymCustomer
+
 
 
 @require_POST
@@ -39,19 +40,26 @@ def order_create(request):
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
+        form1 = AnonOrd(request.POST)
         if form.is_valid():
-            order = form.save(commit=False)
-            order.user = request.user
+            if request.user.is_authenticated:
+                order = form.save(commit=False)
+                order.user = request.user
+            else:
+                anonuser = form1.save()
+                order = form.save(commit=False)
+                order.anonymuser = anonuser
             order.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          sport_item=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
-            # cart.clear()
-            return render(request, 'mysport/profile.html',
+            cart.clear()
+            return render(request, 'mysport/order_create.html',
                           {'order': order,'menu':menu})
     else:
         form = OrderCreateForm
-    return render(request, 'mysport/profile.html',
-                  {'cart': cart, 'form': form,'menu':menu})
+        form_anonuser = AnonOrd
+    return render(request, 'mysport/order_create.html',
+                  {'cart': cart, 'form': form,'menu':menu,'form_anonuser':form_anonuser})

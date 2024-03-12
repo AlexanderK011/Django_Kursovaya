@@ -121,9 +121,22 @@ class User(AbstractUser):
     number_phone = models.CharField(max_length=25)
     address = models.CharField(max_length=200, null=True)
     postal_index = models.CharField(max_length=20)
+    city = models.CharField(max_length=35)
+
+class AnonymCustomer(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    number_phone = models.CharField(max_length=25)
+    city = models.CharField(max_length=35)
+    address = models.CharField(max_length=200, null=True)
+    postal_index = models.CharField(max_length=20)
+
+    def __str__(self):
+        return 'Anonuser {}'.format(self.id)
 
 class Order(models.Model):
     user = models.ForeignKey(User,null=True, blank=True,on_delete=models.CASCADE)
+    anonymuser = models.ForeignKey(AnonymCustomer,null=True, blank=True,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
@@ -150,6 +163,7 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
 
 # class Subcat(models.Model):
 #     name = models.CharField(max_length=25)
