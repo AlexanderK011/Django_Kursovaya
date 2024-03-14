@@ -1,6 +1,6 @@
 {% extends 'mysport/index.html' %}
 
-
+{% include 'header.html' %}
 {% block main %}
    <div class="content-section">
         <form class="register_form" method="POST">
@@ -21,6 +21,9 @@
 
     <label for="id_number_phone">number_phone:</label>
     <input type="text" id="id_number_phone" name="number_phone" required>
+
+    <label for="id_city">city:</label>
+    <input type="text" id="id_city" name="city" required>
 
     <label for="id_address">address:</label>
     <input type="text" id="id_address" name="address" required>

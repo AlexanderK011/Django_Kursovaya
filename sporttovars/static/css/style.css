@@ -434,6 +434,164 @@ main{
     z-index: 0;
     position: relative;
 }
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+      align-items: center;
+    justify-content: center;
+        width: 100%;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+     padding: 0 81px;
+         text-align: -webkit-center;
+             margin-top: 20px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+      width: 44%;
+}
+
+.row input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.row label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.row a {
+  color: #2196F3;
+}
+
+.row hr {
+  border: 1px solid lightgrey;
+}
+
+span.price1 {
+  float: right;
+  color: grey;
+      font-size: 16px;
+}
+
+.container p{
+    margin: 6px 0;
+}
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+/**
+  .row {
+    flex-direction: column-reverse;
+  }
+  **/
+  .col-25 {
+    margin-bottom: 20px;
+  }
+  .container {
+    padding: 5px 27px 12px 9px;
+        width: 100%;
+}
+}
+.col-25, .col-50, .col-75 {
+    padding: 0 33px;
+}
+
+.user_profile {
+    display: flex;
+    min-height: 650px;
+    justify-content:center;
+}
+
+#myTab {
+    display: flex;
+    margin-top: 20px;
+        padding: 0 28px;
+}
+#myTab li {
+    border: 1px solid;
+        padding: 2px 7px;
+    margin-left: 17px;
+        background: beige;
+}
+
+#myTab li a {
+    text-decoration:none;
+    color:black;
+}
+
+.panel-body {
+    display: flex;
+}
+
+.main{
+min-height:650px;
+}
+
+.text-center {
+    margin-top: 51px;
+    margin-left: 25px;
+}
+.panel{
+    padding-left: 10px;
+}
+.tab-pane h4{
+    margin-top: 50px;
+    margin-left: 24px;
+}
+.tab-pane table{
+width:100%
+}
+.text-center img {
+    width: 116px;
+}
 /* Первая секция конец */
 
 /* Секция брендов */
@@ -1286,6 +1444,7 @@ width:66%;
 .map_office h2 {
     font-size: calc(21px + 14 * (100vw / 1920));
 }
+
 }
 /* Адаптация до 650 px Конец */
 
@@ -1508,6 +1667,15 @@ width:66%;
 }
 .td_img {
     border-top: 2px solid;
+}
+.panel-body {
+    flex-direction:column;
+    align-items:center;
+    width: 100%;
+}
+}
+.tab-pane table{
+width:100%;
 }
 
 }

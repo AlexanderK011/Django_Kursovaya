@@ -1,21 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if request.user.is_authenticated %}
-    <form action="{%url 'cart:order_create'%}" method="POST">
-    {%csrf_token%}
-    <button type="submit">Заказать</button>
-</form>
+{% extends 'mysport/index.html' %}
+{%load static%}
+{% include 'header.html' %}
+
+{% block main %}
+<div class="main">
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <form action="{%url 'cart:order_create'%}" method="POST">
+        {%csrf_token%}
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Оформить заказ</h3>
+            {% if request.user.is_authenticated %}
+              </div>
     {%else%}
-    <form action="{%url 'cart:order_create'%}" method="POST">
-    {%csrf_token%}
-    {{form_anonuser}}
-        <button type="submit"></button>
-        </form>
+            <label for="fname"><i class="fa fa-user"></i> Имя</label>
+            <input type="text" id="fname" name="first_name" placeholder="Иван">
+            <label for="email"><i class="fa fa-envelope"></i> Фамилия</label>
+            <input type="text" id="email" name="last_name" placeholder="Иванов">
+            <label for="adr"><i class="fa fa-address-card-o"></i> Адрес</label>
+            <input type="text" id="adr" name="address" placeholder="Улица. , д.0, кв.0">
+            <label for="city"><i class="fa fa-institution"></i> City</label>
+            <input type="text" id="city" name="city" placeholder="New York">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="numb_phone">Номер телефона</label>
+                <input type="number" id="numb_phone" name="number_phone" placeholder="79003009911">
+              </div>
+              <div class="col-50">
+                <label for="post_index">Почтовый индекс</label>
+                <input type="text" id="post_index" name="postal_index" placeholder="429121">
+              </div>
+            </div>
+          </div>
+
+        </div>
         {%endif%}
-</body>
-</html>
+        <input type="submit" value="Заказать" class="btn">
+      </form>
+    </div>
+  </div>
+  <div class="col-25">
+    <div class="container">
+      <h4>Cart <span class="price1" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{cart|length}}шт</b></span></h4>
+        {% for item in cart %}
+            {% with product=item.product %}
+      <p><a href="#">{{ product.name }}</a> <span class="price1">{{ product.price }}Р </span></p>
+        {%endwith%}
+        {%endfor%}
+      <hr>
+      <p>Total <span class="price1" style="color:black"><b>{{ cart.get_total_price }}Р</b></span></p>
+                </div>
+    </div>
+  </div>
+</div>
+</div>
+{%endblock%}

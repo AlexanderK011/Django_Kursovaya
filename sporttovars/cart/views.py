@@ -32,7 +32,9 @@ def cart_detail(request):
     cart = Cart(request)
     data ={
         'cart':cart,
-        'menu':menu
+        'menu':menu,
+        'title': 'Корзина'
+
     }
     return render(request, 'mysport/cart.html', data)
 
@@ -62,4 +64,4 @@ def order_create(request):
         form = OrderCreateForm
         form_anonuser = AnonOrd
     return render(request, 'mysport/order_create.html',
-                  {'cart': cart, 'form': form,'menu':menu,'form_anonuser':form_anonuser})
+                  {'cart': cart, 'form': form,'menu':menu,'form_anonuser':form_anonuser,'title':'Оформление заказа'})

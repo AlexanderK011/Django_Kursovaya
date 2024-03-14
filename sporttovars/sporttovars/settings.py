@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -29,16 +31,18 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = "mysport.User"
 CART_SESSION_ID = 'cart'
 
+LOGOUT_URL = reverse_lazy('login')
+
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mysport',
+'django.contrib.admin',
     'cart',
     'mptt'
 ]
@@ -116,7 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Indian/Mayotte'
+USE_TZ = True
 
 USE_I18N = True
 

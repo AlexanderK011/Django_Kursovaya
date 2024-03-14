@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <title>wrywe</title>
 </head>
+{% include 'header.html' %}
 {% block main %}
-
+<div class="main">
  <form class="login" method="POST">
      <legend>Авторизация</legend>
  {% csrf_token %}
@@ -19,5 +20,5 @@
     <button type="submit">Войти</button>
       </form>
 
-
+</div>
 {%endblock%}

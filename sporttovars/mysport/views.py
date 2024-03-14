@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -27,8 +27,6 @@ menu = {
 
 def index(request):
     tovars = Sport_item.objects.only('id', 'name', 'price', 'img')[:10]
-    user = request.user
-    print(user)
     if request.method == 'POST':
         form=FeedbackForm(request.POST)
         if form.is_valid():
@@ -38,7 +36,8 @@ def index(request):
         data = {
             'tovars': tovars,
             'menu': menu,
-            'form':form
+            'form':form,
+            'title': 'Главная'
         }
         return render(request, 'mysport/index.html', data)
     return redirect(index)
@@ -56,6 +55,7 @@ def takecategory(request,id):
     data={
         'cat_subcat': cat_subcat,
         'menu': menu,
+        'title': 'Подкатегории'
     }
     return render(request,'mysport/subcategs.html',data)
 
@@ -86,7 +86,8 @@ def tovars(request,id):
         'tovars_brends':tovars_brends,
         'subc_id':subcid,
         'subc_name':subc_name,
-        'cart_product_form':cart_product_form
+        'cart_product_form':cart_product_form,
+        'title': 'Товары'
 
     }
     return render(request, 'mysport/tovars.html',data)
@@ -140,7 +141,8 @@ def tovars_brends(request,name):
         'tovars_color':tovars_color,
         'filt_cats': filt_cats,
         'tovars_brends':tovars_brends,
-        'brend_name':brend_name
+        'brend_name':brend_name,
+        'title': 'Товары'
     }
     return render(request, 'mysport/tovars.html',data)
 
@@ -177,7 +179,8 @@ def one_tovar(request,id):
         'tovar':tovar,
         'size':size,
         'harakt':harakt,
-        'subc':subc
+        'subc':subc,
+        'title': tovar.name
     }
     return render(request, 'mysport/one_tovar.html',data)
 
@@ -212,6 +215,7 @@ def search_tovars(request):
         'tovars_color': tovars_color,
         'filt_cats': filt_cats,
         'tovars_brends': tovars_brends,
+        'title': 'Товары'
     }
     return render(request,'mysport/tovars.html',data)
 
@@ -242,14 +246,16 @@ def filter_search(request,query):
 
 def onas(request):
     data = {
-        'menu':menu
+        'menu':menu,
+        'title': 'О нас'
     }
 
     return render(request, 'mysport/onas.html',data)
 
 def reg(request):
     data = {
-        'menu': menu
+        'menu': menu,
+        'title': 'Вход'
     }
     if request.method =="POST":
         form = UserRegForm(request.POST)
@@ -266,8 +272,17 @@ def reg(request):
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = 'mysport/login.html'
+    extra_context = {'menu': menu,'title':'Вход'}
+
+class LogoutUser(LogoutView):
+    form_class = AuthenticationForm
+    template_name = 'mysport/login.html'
     extra_context = {'menu': menu}
 
 @login_required
 def profile(request):
-    return render(request, 'mysport/profile.html')
+    data = {
+        'menu': menu,
+        'title': 'Profile'
+    }
+    return render(request, 'mysport/profile.html',data)
