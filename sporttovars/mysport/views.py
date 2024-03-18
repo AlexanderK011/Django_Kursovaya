@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.template.loader import render_to_string
-from mysport.models import Brend,Sport_item,Category,Subcat,Characheristic,Color,Size #Subcat_cat
+from mysport.models import Brend,Sport_item,Category,Subcat,Characheristic,Color,Size,Order,OrderItem #Subcat_cat
 
 from mysport.forms import UserRegForm,FeedbackForm
 
@@ -283,6 +283,31 @@ class LogoutUser(LogoutView):
 def profile(request):
     data = {
         'menu': menu,
-        'title': 'Profile'
+        'title': 'Профиль'
     }
     return render(request, 'mysport/profile.html',data)
+
+@login_required
+def order_history(request):
+    user_hist = Order.objects.filter(user_id = request.user.id)
+    data = {
+        'menu': menu,
+        'title': 'История заказов',
+        'user_hist':user_hist
+    }
+    return render(request, 'mysport/orderhist.html', data)
+
+@login_required
+def order_history_items(request,id):
+    user_hist = OrderItem.objects.filter(order_id = id)
+    total = 0
+    for i in user_hist:
+        total= total + i.get_cost()
+    data = {
+        'id':id,
+        'menu': menu,
+        'title': 'История заказов',
+        'user_hist':user_hist,
+        'total':total
+    }
+    return render(request, 'mysport/orderhistitems.html', data)

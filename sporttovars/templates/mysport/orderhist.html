@@ -1,0 +1,40 @@
+{% extends 'mysport/index.html' %}
+{% include 'header.html' %}
+
+{% block main %}
+     <ul id="myTab" class="nav nav-pills">
+ <li class="active"><a href="{%url 'profile'}" data-toggle="tab">О пользователе</a></li>
+ <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
+ <li class=""><a href="#contact" data-toggle="tab">Смена пароля</a></li>
+  <li class=""><a href="#contact" data-toggle="tab">Сменить данные</a></li>
+ </ul>
+<div class="order">
+    <h1>История заказов</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Заказ,№</th>
+            <th>Дата заказа</th>
+            <th>Оплата</th>
+        </tr>
+        </thead>
+        <tbody>
+{%for i in user_hist%}
+<tr>
+                    <td data-label="Заказ,№"><a href="{%url 'hist_items_order' i.id%}">{{i.id}}</a></td>
+                    <td data-label="Дата заказа"><a href="{%url 'hist_items_order' i.id%}">{{i.created|date:'Y-m-d(H:i)'}}</a></td>
+
+{%if i.paid == False%}
+                    <td data-label="Оплата">Не оплачен</td>
+{%else%}
+<td data-label="Оплата">Оплачен</td>
+{%endif%}
+
+                </tr>
+
+                            {%endfor%}
+ </tbody>
+    </table>
+</div>
+</div>
+{%endblock%}

@@ -1,0 +1,35 @@
+{% extends 'mysport/index.html' %}
+{% include 'header.html' %}
+
+{% block main %}
+     <ul id="myTab" class="nav nav-pills">
+ <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
+ <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
+ <li class=""><a href="#contact" data-toggle="tab">Смена пароля</a></li>
+  <li class=""><a href="#contact" data-toggle="tab">Сменить данные</a></li>
+ </ul>
+<div class="order">
+    <h1>Заказ №{{id}}</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Количество</th>
+        </tr>
+        </thead>
+        <tbody>
+{%for i in user_hist%}
+<tr>
+                    <td data-label="Название">{{i.sport_item}}</td>
+                    <td data-label="Цена">{{i.price}}</td>
+                    <td data-label="Количество">{{i.quantity}}</td>
+                </tr>
+                            {%endfor%}
+
+ </tbody>
+    </table>
+    <p>Итого: {{total}}Р</p>
+</div>
+</div>
+{%endblock%}

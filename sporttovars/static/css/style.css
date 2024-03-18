@@ -90,12 +90,11 @@ header{
     font-family: Montserrat;
     font-size: 18px;
 }
-.open_catalog{
-    margin-right: 25px;
+ .open_catalog {
+    margin-right: 4px;
     transform: rotate(90deg);
     margin-top: 25px;
     height: 10px;
-    
 }
 .catalog{
     margin-right: 3px;
@@ -111,9 +110,10 @@ header{
     height: 100%;
 }
 
-.head2 li{
-    margin-right: 20px;
+.head2 li {
+    margin-right: 17px;
     cursor: pointer;
+    font-size: 17px;
 }
 
 .head2 ul :hover{
@@ -130,7 +130,7 @@ position:relative;
     width: 15px;
     text-align: center;
     height: 19px;
-    right: -6px;
+    right: 0px;
     border-radius: 69px;
     background-color: #4f79ff;
     text-decoration: none;
@@ -383,6 +383,7 @@ text-decoration:none;
 .carticon{
 width:29px;
  height: 31px;
+     margin-right: 7px;
 }
 
 /* Первая секция */
@@ -1299,7 +1300,8 @@ width:66%;
         display: none;
     }
     .search_form {
-        width: 87%;
+        width: 87%!important;
+        justify-content: end!important;
     }
     .burger{
         display: block;
@@ -1404,7 +1406,7 @@ width:66%;
       .head2 p{
             justify-content: flex-end;
             padding-right: 2%;
-            font-size: 18px;
+            font-size: 17px;
             transform: scaleY(1.5);
             transform: rotate(90deg);
             scale: 1.2;
@@ -1480,6 +1482,14 @@ width:66%;
         margin-left: 0;
         justify-content: center;
     }
+    .nullblock10 {
+    flex-basis: 1%;
+}
+
+.search_form {
+    justify-content: unset ;
+    width:unset;
+}
     .soc_seti img {
         width: 71px ;
         height: 55px;
@@ -1636,6 +1646,16 @@ width:66%;
     #filtration_tovars a {
         display: none;
     }
+.open_catalog {
+    margin-right: 15px;
+}
+.head2 ul{
+    font-size: 19px;
+}
+.head2 li {
+    font-size: 19px;
+}
+
 }
 
 @media (max-width:525px) {
