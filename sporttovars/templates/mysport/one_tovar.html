@@ -18,12 +18,17 @@
     <div class="info_tovall">
         <p class="p_brendname">{{tovar.brend.name}}</p>
         <h3>{{tovar.name}}</h3>
+             <form class="addtocart" action="{% url "cart:cart_add" tovar.id %}" method="post">
+                    <input type="submit" value="Добавить в корзину">
+                    {% csrf_token %}
+                        </form>
         <p class="p_money">{{tovar.price}} ₽</p>
         <div class="opisan_block">
             <p class="color">Цвет: {{tovar.color.color}}</p>
         <h4>Описание:</h4>
         <p class="opisan_tovar">{{tovar.description}}</p>
             </div>
+
     </div>
 </div>
     </content>

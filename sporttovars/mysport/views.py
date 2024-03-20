@@ -42,6 +42,34 @@ def index(request):
         return render(request, 'mysport/index.html', data)
     return redirect(index)
 
+def policy_conf(request):
+    data = {
+        'menu': menu,
+        'title': 'Политика конфиденциальности'
+    }
+    return render(request, 'mysport/policy.html', data)
+
+def polzov_soglas(request):
+    data= {
+        'menu':menu,
+        'title': "пользовательское соглашение"
+    }
+    return render(request, 'mysport/polzovatsoglas.html', data)
+
+def haranty_obsluz(request):
+    data = {
+        'menu': menu,
+        'title': "пользовательское соглашение"
+    }
+    return render(request, 'mysport/haranty_obsluz.html', data)
+
+def price_haranty(request):
+    data= {
+        'menu':menu,
+        'title': "пользовательское соглашение"
+    }
+    return render(request, 'mysport/price_haranty.html', data)
+
 def cats(request,id):
     cat_subcat = Subcat.objects.filter(id = id).only('id','name','img_subcatcat')
     data ={

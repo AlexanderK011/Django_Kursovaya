@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
-
 from mysport.views import *
 
 urlpatterns = [
@@ -28,6 +26,10 @@ urlpatterns = [
     path('subcat/<int:id>/',cats),
     path('subcat/cat/<int:id>/',takecategory,name = 'cat_subc'),
     path('tovars/<int:id>/',tovars, name='tovars'),
+    path('policy-confindence/',policy_conf, name='policy_conf'),
+    path('price_haranty/',policy_conf, name='price_haranty'),
+    path('haranty_obsluz/',policy_conf, name='haranty_obsluz'),
+    path('polzov_soglas/',policy_conf, name='polzov_soglas'),
     path('one_tovar/<int:id>',one_tovar,name='tovar'),
     path('aboutus/',onas,name='about_us'),
     path('tovars/<str:name>/',tovars_brends, name='brend_tovars'),

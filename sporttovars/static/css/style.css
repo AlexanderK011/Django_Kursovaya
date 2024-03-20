@@ -300,6 +300,18 @@ display: block;
         box-sizing: border-box;
 }
 
+.myblock_foot{
+ol {
+    display: unset !important;
+    font-size: unset;
+}
+ol li{
+    display: unset;
+    font-size: unset;
+}
+
+}
+
 .register_form button{
 background-color: #60bde9;
         color: white;
@@ -557,10 +569,9 @@ span.price1 {
         padding: 0 28px;
 }
 #myTab li {
-    border: 1px solid;
+    border-bottom: 1px solid;
         padding: 2px 7px;
     margin-left: 17px;
-        background: beige;
 }
 
 #myTab li a {
@@ -1037,6 +1048,22 @@ font-size: 20px;
     padding: 2%;
     margin-bottom: 30px;
 }
+.addtocart input{
+    border: unset;
+    background-color: unset;
+    height: 34px;
+    padding: 6px;
+    margin-top: 14px;
+    width: 149px;
+    font-size: 13px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+    border-radius: 8px;
+}
+.addtocart input:hover{
+transition:1s;
+background-color:#40c8f5;
+}
 .tovar:hover{
     box-shadow: 0px 8px 10px 11px #efeeee;
     transition: 1s ease;
@@ -1417,10 +1444,18 @@ width:66%;
     font-size: 16px;
     display: none;
 }
+
+#myTab {
+    padding: 0px;
+}
+#myTab li {
+    font-size: 15px;
+}
+
 }
 /* Адаптация до 920 px Конец */
 
-/* Адаптация до 650 px */
+/* Адаптация до 550 px */
 @media screen and (max-width: 550px) {
     .three_cats {
         flex-direction: column;
@@ -1625,6 +1660,18 @@ width:66%;
 }
 #filtration_tovars a {
     margin-left: 24px;
+}
+
+#myTab {
+    padding: 0px 20px;
+    flex-direction: column;
+    align-items: center;
+}
+#myTab li {
+    padding: 5px 4px;
+    margin-top: 18px;
+    margin-left: 18px;
+    width: 154px;
 }
 
 }

@@ -4,7 +4,7 @@
 {% include 'header.html' %}
 {% block main %}
      <ul id="myTab" class="nav nav-pills">
- <li class="active"><a href="#detail" data-toggle="tab">О пользователе</a></li>
+ <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
  <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
  <li class=""><a href="#contact" data-toggle="tab">Смена пароля</a></li>
   <li class=""><a href="#contact" data-toggle="tab">Сменить данные</a></li>
