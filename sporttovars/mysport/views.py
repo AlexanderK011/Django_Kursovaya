@@ -1,19 +1,20 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.template.loader import render_to_string
+from django.urls import reverse_lazy
 from mysport.models import Brend,Sport_item,Category,Subcat,Characheristic,Color,Size,Order,OrderItem #Subcat_cat
 
-from mysport.forms import UserRegForm,FeedbackForm
+from mysport.forms import UserRegForm,FeedbackForm,UserPasswordChangeForm,UserUpdateForm
 
 from cart.forms import CartAddProductForm
-
 
 menu = {
     'brends' : Brend.objects.all(),
@@ -75,6 +76,7 @@ def cats(request,id):
     data ={
          'cat_subcat' : cat_subcat,
         'menu': menu,
+        'title':'Категории'
     }
     return render(request,'mysport/subcategs.html',data)
 
@@ -295,16 +297,16 @@ def reg(request):
     else:
         form = UserRegForm()
         data['form'] = form
-        return render(request,'mysport/reg.html',data)
+        return render(request,'mysport/user/reg.html',data)
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm
-    template_name = 'mysport/login.html'
+    template_name = 'mysport/user/login.html'
     extra_context = {'menu': menu,'title':'Вход'}
 
 class LogoutUser(LogoutView):
     form_class = AuthenticationForm
-    template_name = 'mysport/login.html'
+    template_name = 'mysport/user/login.html'
     extra_context = {'menu': menu}
 
 @login_required
@@ -313,7 +315,7 @@ def profile(request):
         'menu': menu,
         'title': 'Профиль'
     }
-    return render(request, 'mysport/profile.html',data)
+    return render(request, 'mysport/user/profile.html',data)
 
 @login_required
 def order_history(request):
@@ -323,7 +325,7 @@ def order_history(request):
         'title': 'История заказов',
         'user_hist':user_hist
     }
-    return render(request, 'mysport/orderhist.html', data)
+    return render(request, 'mysport/user/orderhist.html', data)
 
 @login_required
 def order_history_items(request,id):
@@ -338,4 +340,34 @@ def order_history_items(request,id):
         'user_hist':user_hist,
         'total':total
     }
-    return render(request, 'mysport/orderhistitems.html', data)
+    return render(request, 'mysport/user/orderhistitems.html', data)
+
+def user_update_profile(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST,instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(profile)
+    else:
+        form = UserUpdateForm(instance = request.user)
+        data={
+            'form':form,
+            'menu':menu
+        }
+    return render(request,'mysport/user/profile_update.html',data)
+
+class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    form_class = UserPasswordChangeForm
+    template_name = 'mysport/user/change_passw.html'
+    success_message = 'Ваш пароль был успешно изменён!'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Изменение пароля на сайте'
+        context['menu'] = menu
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy(profile)
+

@@ -39,6 +39,8 @@ urlpatterns = [
     path('filter-products-search/<str:query>/',filter_search,name='filter_search'),
     path('register/',reg,name = 'reg'),
     path('accounts/profile/',profile,name = 'profile'),
+    path('accounts/password-change/', UserPasswordChangeView.as_view(), name='password_change'),
+    path('accounts/user-update/', user_update_profile, name='user_update'),
     path('accounts/profile/order_history/',order_history,name='hist_ord'),
     path('accounts/profile/order_history/<int:id>/',order_history_items,name = 'hist_items_order'),
     path('login/', LoginUser.as_view(template_name='mysport/login.html'), name='login'),

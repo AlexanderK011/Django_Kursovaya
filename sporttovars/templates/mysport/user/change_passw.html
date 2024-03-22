@@ -1,0 +1,30 @@
+{% extends 'mysport/index.html' %}
+{%load static%}
+
+{% include 'header.html' %}
+{% block main %}
+     <ul id="myTab" class="nav nav-pills">
+ <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
+ <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
+ <li class=""><a href="{%url 'password_change'%}" data-toggle="tab">Смена пароля</a></li>
+  <li class=""><a href="{%url 'user_update'%}" data-toggle="tab">Сменить данные</a></li>
+ </ul>
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Изменение пароля на сайте</h2>
+            </div>
+            <form method="post" class="register_form">
+                {% csrf_token %}
+
+                <label for="id_new_password1">Введите новый пароль:</label>
+                <input name="new_password1" id="id_new_password1" type="text" required>
+                <sm><li>Ваш пароль не должен быть слишком похож на другую вашу личную информацию.</li><br></sm>
+<sm><li>Ваш пароль должен содержать не менее 8 символов.</li><br></sm>
+<sm><li>Ваш пароль не может быть широко используемым паролем.</li><br></sm>
+<sm><li>Ваш пароль не может быть полностью числовым.</li></sm>
+                <label id="id_new_password2label" for="id_new_password2">Повторите новый пароль:</label>
+                <input name="new_password2" id="id_new_password2" type="text" required>
+                <button type="submit" class="btn btn-dark mt-2">Подтвердить</button>
+            </form>
+        </div>
+{%endblock%}

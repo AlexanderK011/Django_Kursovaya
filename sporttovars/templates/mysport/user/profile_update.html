@@ -1,0 +1,37 @@
+{% extends 'mysport/index.html' %}
+{%load static%}
+
+{% include 'header.html' %}
+{% block main %}
+   <ul id="myTab" class="nav nav-pills">
+ <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
+ <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
+ <li class=""><a href="{%url 'password_change'%}" data-toggle="tab">Смена пароля</a></li>
+  <li class=""><a href="{%url 'user_update'%}" data-toggle="tab">Сменить данные</a></li>
+ </ul>
+        <div class="card-body">
+            <div class="card-title">
+                <h2>Изменение данных пользвателя на сайте</h2>
+            </div>
+            <form method="post" class="register_form">
+                {% csrf_token %}
+
+                <label for="id_first_name">Введите имя:</label>
+                <input name="first_name" value="{{request.user.first_name}}" id="id_first_name" type="text" required>
+                <label  for="id_last_name">Введите фамилию:</label>
+                <input name="last_name" value="{{request.user.last_name}}" id="id_last_name" type="text" required>
+                <label for="id_number_phone">Введите номер телефона:</label>
+                <input name="number_phone" value="{{request.user.number_phone}}" id="id_number_phone" type="text" required>
+                <label for="id_address">Введите адрес:</label>
+                <input name="address" value="{{request.user.address}}" id="id_address" type="text" required>
+                <label for="id_postal_index">Введите почтовый индекс::</label>
+                <input name="postal_index" value="{{request.user.postal_index}}" id="id_postal_index" type="text" required>
+                <label for="id_city">Введите город:</label>
+                <input name="city" value="{{request.user.city}}" id="id_city" type="text" required>
+                <label for="id_email">Введите почту:</label>
+                <input name="email" id="id_email" value="{{request.user.email}}" type="text" required>
+                <button type="submit" class="btn btn-dark mt-2">Подтвердить</button>
+            </form>
+        </div>
+
+{%endblock%}
