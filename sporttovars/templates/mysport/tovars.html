@@ -146,7 +146,7 @@
                     </div>
                     <div class="tovar_watch">
                         <p>{{i.price}} ₽ </p>
-                         <form class="addtocart" action="{% url "cart:cart_add" i.subcutscats__id %}" method="post">
+                         <form class="addtocart" action="{% url "cart:cart_add" i.id %}" method="post">
                     <input type="submit" value="Добавить в корзину">
                     {% csrf_token %}
                         </form>

@@ -12,7 +12,7 @@
 
         <div class="row">
           <div class="col-50">
-            <h3>Оформить заказ</h3>
+            <h3 class="oformzakaz">Оформить заказ</h3>
             {% if request.user.is_authenticated %}
               </div>
     {%else%}
@@ -20,15 +20,15 @@
             <input type="text" id="fname" name="first_name" placeholder="Иван">
             <label for="email"><i class="fa fa-envelope"></i> Фамилия</label>
             <input type="text" id="email" name="last_name" placeholder="Иванов">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Адрес</label>
+            <label for="adr"><i class="fa fa-address-card-o"></i> Адрес доставки</label>
             <input type="text" id="adr" name="address" placeholder="Улица. , д.0, кв.0">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
+            <label for="city"><i class="fa fa-institution"></i> Город</label>
+            <input type="text" id="city" name="city" placeholder="Москва">
 
             <div class="row">
               <div class="col-50">
                 <label for="numb_phone">Номер телефона</label>
-                <input type="number" id="numb_phone" name="number_phone" placeholder="79003009911">
+                <input class="numphone" type="text" id="numb_phone" name="number_phone" placeholder="79003009911">
               </div>
               <div class="col-50">
                 <label for="post_index">Почтовый индекс</label>

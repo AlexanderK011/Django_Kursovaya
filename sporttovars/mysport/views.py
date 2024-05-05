@@ -53,23 +53,23 @@ def policy_conf(request):
 def polzov_soglas(request):
     data= {
         'menu':menu,
-        'title': "пользовательское соглашение"
+        'title': "Пользовательское соглашение"
     }
     return render(request, 'mysport/polzovatsoglas.html', data)
 
 def haranty_obsluz(request):
     data = {
         'menu': menu,
-        'title': "пользовательское соглашение"
+        'title': "Гарантия обслуживания"
     }
     return render(request, 'mysport/haranty_obsluz.html', data)
 
 def price_haranty(request):
     data= {
         'menu':menu,
-        'title': "пользовательское соглашение"
+        'title': "Гарантия цены"
     }
-    return render(request, 'mysport/price_haranty.html', data)
+    return render(request, 'mysport/priceharanty.html', data)
 
 def cats(request,id):
     cat_subcat = Subcat.objects.filter(id = id).only('id','name','img_subcatcat')
@@ -235,9 +235,13 @@ def search_tovars(request):
                                                                                 'subcutscats__brend__id').order_by(
         'subcutscats__brend__name').distinct('subcutscats__brend__name')
     filt_cats1 = []
-    for i in filt_cat:
-        filt_cats1.append(i['tree_id'])
-        filt_cats = Subcat.objects.filter(tree_id__in = filt_cats1).filter(level=0)
+    if filt_cats1 is None:
+        print(filt_cats1)
+        for i in filt_cat:
+            filt_cats1.append(i['tree_id'])
+            filt_cats = Subcat.objects.filter(tree_id__in = filt_cats1).filter(level=0)
+    else:
+        filt_cats = Subcat.objects.all()
     data = {
         'results_tovars': results_tovars,
         'menu': menu,

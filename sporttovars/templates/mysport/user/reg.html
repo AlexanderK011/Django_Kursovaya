@@ -7,43 +7,45 @@
             {% csrf_token %}
                 <legend>Регистрация</legend>
                     {% csrf_token %}
-    <label for="id_username">Username:</label>
+    <label for="id_username">Ваш Никнейм для входа:</label>
     <input type="text" id="id_username" name="username" required>
 
-    <label for="id_email">Email:</label>
+    <label for="id_email">Почта:</label>
     <input type="email" id="id_email" name="email">
 
-    <label for="id_first_name">first_name:</label>
+    <label for="id_first_name">Имя:</label>
     <input type="text" id="id_first_name" name="first_name" required>
 
-    <label for="id_last_name">last_name:</label>
+    <label for="id_last_name">Фамилия:</label>
     <input type="text" id="id_last_name" name="last_name" required>
 
-    <label for="id_number_phone">number_phone:</label>
+    <label for="id_number_phone">Номер телефона:</label>
     <input type="text" id="id_number_phone" name="number_phone" required>
 
-    <label for="id_city">city:</label>
+    <label for="id_city">Город:</label>
     <input type="text" id="id_city" name="city" required>
 
-    <label for="id_address">address:</label>
+    <label for="id_address">Адрес:</label>
     <input type="text" id="id_address" name="address" required>
 
-    <label for="id_postal_index">postal_index:</label>
+    <label for="id_postal_index">Почтовый индекс:</label>
     <input type="text" id="id_postal_index" name="postal_index" required>
 
-    <label for="id_password1">Password:</label>
+    <label for="id_password1">Пароль:</label>
     <input type="password" id="id_password1" name="password1">
                           <sm><li>Ваш пароль не должен быть слишком похож на другую вашу личную информацию.</li><br></sm>
 <sm><li>Ваш пароль должен содержать не менее 8 символов.</li><br></sm>
 <sm><li>Ваш пароль не может быть широко используемым паролем.</li><br></sm>
 <sm><li>Ваш пароль не может быть полностью числовым.</li></sm>
 
-    <label class="id_password1label1" for="id_password2">Confirm Password:</label>
+    <label class="id_password1label1" for="id_password2">Подтвердите пароль:</label>
     <input type="password" id="id_password2" name="password2">
-
-    <button type="submit">Submit</button>
+    <div class="submblock">
+    <button type="submit">Зарегистрироваться</button>
+            <br>
                 Уже есть аккаунт? <a class="ml-2" href="#">Вход</a>
             </small>
+        </div>
         </form>
         </div>
     </div>
