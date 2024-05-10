@@ -48,7 +48,7 @@
       <h4>Cart <span class="price1" style="color:black"><i class="fa fa-shopping-cart"></i> <b>{{cart|length}}шт</b></span></h4>
         {% for item in cart %}
             {% with product=item.product %}
-      <p><a href="#">{{ product.name }}</a> <span class="price1">{{ product.price }}Р </span></p>
+      <p><a href="{%url 'tovar' product.id %}">{{ product.name }}</a> <span class="price1">{{ product.price }}Р </span></p>
         {%endwith%}
         {%endfor%}
       <hr>

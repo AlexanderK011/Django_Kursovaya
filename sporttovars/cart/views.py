@@ -40,6 +40,8 @@ def cart_detail(request):
 
 def order_create(request):
     cart = Cart(request)
+    if not cart:
+        return redirect('cart:cart_detail')
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         form1 = AnonOrd(request.POST)
@@ -58,8 +60,7 @@ def order_create(request):
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
-            return render(request, 'mysport/order_create.html',
-                          {'order': order,'menu':menu})
+            return redirect('cart:cart_detail')
     else:
         form = OrderCreateForm
         form_anonuser = AnonOrd

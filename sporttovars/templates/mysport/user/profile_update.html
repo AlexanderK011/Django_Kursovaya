@@ -3,12 +3,19 @@
 
 {% include 'header.html' %}
 {% block main %}
-   <ul id="myTab" class="nav nav-pills">
+     <ul id="myTab" class="nav nav-pills">
  <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
+                  <li class=""><a href="{%url 'currentorder'%}" data-toggle="tab">Текущие заказы</a></li>
  <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
  <li class=""><a href="{%url 'password_change'%}" data-toggle="tab">Смена пароля</a></li>
-  <li class=""><a href="{%url 'user_update'%}" data-toggle="tab">Сменить данные</a></li>
+ <li class=""><a href="{%url 'user_update'%}" data-toggle="tab">Сменить данные</a></li>
+
  </ul>
+     <ul id="myTab" class="nav nav-pills">
+             {%  if request.user.is_moder %}
+ <li ><a class="funct_mod" href="{%url 'moder'%}" data-toggle="tab">Управление заказами</a></li>
+         {%endif%}
+</ul>
         <div class="card-body">
             <div class="card-title">
                 <h2>Изменение данных пользвателя на сайте</h2>

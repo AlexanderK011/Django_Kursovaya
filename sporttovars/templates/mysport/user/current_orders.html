@@ -23,6 +23,7 @@
             <th>Заказ,№</th>
             <th>Дата заказа</th>
             <th>Оплата</th>
+            <th>Статус</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
 
                     <td data-label="Заказ,№"><a href="{%url 'hist_items_order' i.id%}">{{i.id}}</a></td>
                     <td data-label="Дата заказа"><a href="{%url 'hist_items_order' i.id%}">{{i.created|date:'d.m.Y H:i'}}</a></td>
+
     {% if i.deny_buy %}
     <td data-label="Оплата">Заказ отменен</td>
     {% else %}
@@ -42,6 +44,7 @@
 <td data-label="Оплата">Оплачен</td>
 {%endif%}
 {%endif%}
+            <td data-label="Статус">{{i.status}}</td>
                 </tr>
 
                             {%endfor%}

@@ -340,7 +340,9 @@ background-color: #60bde9;
 text-align:center;
 }
 
-.price_harant{
+.price_harant {
+    max-width: 640px;
+    width: 100%;
 }
 .pr_haranty{
     text-align: center;
@@ -604,6 +606,9 @@ span.price1 {
 #myTab li a {
     text-decoration:none;
     color:black;
+}
+.funct_mod{
+color:red!important;
 }
 
 .panel-body {
@@ -1188,6 +1193,45 @@ table {
     border: 0px;
     border-collapse: collapse;
 }
+.checkb{
+zoom:2;
+}
+
+.inpformod {
+    width: 197px;
+    font-size: 19px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor:pointer;
+}
+
+.selectstatus {
+    width: 226px;
+    border-radius: 4px;
+    height: 42px;
+    font-size: 18px;
+    padding: 8px 16px;
+    background: aliceblue;
+    border: solid 1px #c7ccd1;
+    margin-top: 9px;
+    margin-bottom: 30px;
+    cursor:pointer;
+    outline:0px;
+}
+.inf{
+font-size:20px;
+}
+textarea {
+ min-width:200px;
+ min-height:80px;
+  max-height: 80px;
+  max-width: 302px;
+  outline:0px;
+    padding: 3px 8px;
+}
+
 .order{
 min-height:599px;
 }
@@ -1649,6 +1693,21 @@ width:66%;
 .info_tovall {
     width: 88%;
 }
+table {
+    width: 100%;
+}
+
+#myTab {
+    padding: 0px 20px;
+    flex-direction: column;
+    align-items: center;
+}
+#myTab li {
+    padding: 5px 4px;
+    margin-top: 18px;
+    margin-left: 18px;
+    width: 154px;
+}
 }
 /* Конец адаптации до 800 px */
 
@@ -1666,6 +1725,8 @@ width:66%;
 .info_tovall {
     width: 99%;
 }
+
+
 .tovar {
     flex-direction: column;
     align-items: center;
@@ -1690,6 +1751,18 @@ width:66%;
     animation-name: slidegdz;
     animation-fill-mode: forwards;
 }
+#myTab {
+    padding: 0px 20px;
+    flex-direction: column;
+    align-items: center;
+}
+#myTab li {
+    padding: 5px 4px;
+    margin-top: 18px;
+    margin-left: 18px;
+    width: 154px;
+}
+
 @keyframes slidegdz {
  0% { width: 5%; }
  100% { width: 100%; }
@@ -1715,17 +1788,6 @@ width:66%;
     margin-left: 24px;
 }
 
-#myTab {
-    padding: 0px 20px;
-    flex-direction: column;
-    align-items: center;
-}
-#myTab li {
-    padding: 5px 4px;
-    margin-top: 18px;
-    margin-left: 18px;
-    width: 154px;
-}
 
 }
 

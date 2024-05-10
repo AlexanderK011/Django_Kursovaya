@@ -1,6 +1,7 @@
 {% extends 'mysport/index.html' %}
-{% include 'header.html' %}
+{%load static%}
 
+{% include 'header.html' %}
 {% block main %}
      <ul id="myTab" class="nav nav-pills">
  <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
@@ -16,22 +17,28 @@
          {%endif%}
 </ul>
 <div class="order">
-    <h1>История заказов</h1>
+    <h1>Управление заказов</h1>
     <table class="cart">
         <thead>
         <tr>
+            <th>Пользователь</th>
             <th>Заказ,№</th>
             <th>Дата заказа</th>
             <th>Оплата</th>
         </tr>
         </thead>
         <tbody>
-{%for i in user_hist%}
+{%for i in order%}
 <tr>
+    {%if i.user is None%}
+    <td data-label="Пользователь">Аноним</td>
+    {%else%}
+                    <td data-label="Пользователь">{{i.user}}</td>
+    {%endif%}
+                    <td data-label="Заказ,№"><a href="{%url 'ordermoder' i.id%}">{{i.id}}</a></td>
+                    <td data-label="Дата заказа"><a href="{%url 'ordermoder' i.id%}">{{i.created|date:'d.m.Y H:i'}}</a></td>
 
-                    <td data-label="Заказ,№"><a href="{%url 'hist_items_order' i.id%}">{{i.id}}</a></td>
-                    <td data-label="Дата заказа"><a href="{%url 'hist_items_order' i.id%}">{{i.created|date:'d.m.Y H:i'}}</a></td>
-    {% if i.deny_buy %}
+ {% if i.deny_buy %}
     <td data-label="Оплата">Заказ отменен</td>
     {% else %}
 {%if i.paid == False%}
@@ -45,7 +52,6 @@
                 </tr>
 
                             {%endfor%}
-
  </tbody>
     </table>
 </div>

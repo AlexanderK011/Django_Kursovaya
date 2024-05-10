@@ -1,0 +1,97 @@
+{% extends 'mysport/index.html' %}
+{% include 'header.html' %}
+
+{% block main %}
+     <ul id="myTab" class="nav nav-pills">
+ <li class="active"><a href="{%url 'profile'%}" data-toggle="tab">О пользователе</a></li>
+                  <li class=""><a href="{%url 'currentorder'%}" data-toggle="tab">Текущие заказы</a></li>
+ <li class=""><a href="{%url 'hist_ord'%}" data-toggle="tab">История заказов</a></li>
+ <li class=""><a href="{%url 'password_change'%}" data-toggle="tab">Смена пароля</a></li>
+ <li class=""><a href="{%url 'user_update'%}" data-toggle="tab">Сменить данные</a></li>
+
+ </ul>
+     <ul id="myTab" class="nav nav-pills">
+             {%  if request.user.is_moder %}
+ <li ><a class="funct_mod" href="{%url 'moder'%}" data-toggle="tab">Управление заказами</a></li>
+         {%endif%}
+</ul>
+<div class="order">
+    <div class="user_info">
+        {%if order.user%}
+        <h3>Информация о пользователе</h3>
+       <p class="inf">Имя: {{order.user.first_name}}</p>
+        <p class="inf">Фамилия: {{order.user.last_name}}</p>
+       <p class="inf"> Адрес: {{order.user.address}}</p>
+       <p class="inf"> Город: {{order.user.city}}</p>
+       <p class="inf"> Номер телефона: {{order.user.number_phone}}</p>
+        {%else%}
+        <h3>Информация об анонмном пользователе</h3>
+        <p class="inf">Имя: {{order.anonymuser.first_name}}</p>
+        <p class="inf">Фамилия: {{order.anonymuser.last_name}}</p>
+        <p class="inf"> Адрес: {{order.anonymuser.address}}</p>
+       <p class="inf"> Город: {{order.anonymuser.city}}</p>
+       <p class="inf"> Номер телефона: {{order.anonymuser.number_phone}}</p>
+        {%endif%}
+    </div>
+    <h1>Заказ №{{id}}</h1>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Количество</th>
+        </tr>
+        </thead>
+        <tbody>
+{%for i in user_hist%}
+<tr>
+                    <td data-label="Название">{{i.sport_item}}</td>
+                    <td data-label="Цена">{{i.price}}</td>
+                    <td data-label="Количество">{{i.quantity}}</td>
+                </tr>
+                            {%endfor%}
+
+ </tbody>
+    </table>
+    <p class="inf">Итого: {{total}}Р</p>
+    <p class="inf">Оплата: {{paid}}</p>
+    <p class="inf">Статус: {{order.status}}</p>
+    {% if order.note != null %}
+    <p class="inf">Примечание: {{order.note}}</p>
+    {%endif%}
+    <table class="cart">
+        <br>
+        <h2>Управление:</h2>
+        <form class="moderupr" method="POST">
+            {%csrf_token%}
+        <thead>
+        <tr>
+            <th>Отменить заказ</th>
+            <th>Оплачен?</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+                    <td class="checkb" data-label="Отменить заказ"><input  type="checkbox" name="deny_buy"></td>
+                    <td class="checkb" data-label="Оплачен?"><input  type="checkbox" name="paid"></td>
+            </tr>
+         </tbody>
+
+    </table>
+    <div class="">
+        <label>Статус:</label>
+          <select class="selectstatus" name="status" id="">
+              <option value="На рассмотрении" {{order1}}>На рассмотрении</option>
+            <option value="В пути" {{order2}}>В пути</option>
+            <option value="Доставлен" {{order3}}>Доставлен</option>
+        </select></div>
+    <div class="">
+        <textarea name="note" rows="10" cols="35" placeholder="Ваше Примечание"></textarea>
+    </div>
+    <input class="inpformod" type="submit" value="Подтвердить">
+            </form>
+</div>
+
+</div>
+
+{%endblock%}

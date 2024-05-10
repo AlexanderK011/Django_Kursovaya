@@ -122,6 +122,7 @@ class User(AbstractUser):
     address = models.CharField(max_length=200, null=True)
     postal_index = models.CharField(max_length=20)
     city = models.CharField(max_length=35)
+    is_moder = models.BooleanField()
 
 class AnonymCustomer(models.Model):
     first_name = models.CharField(max_length=50)
@@ -140,6 +141,9 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+    deny_buy = models.BooleanField(default=False)
+    status = models.CharField(max_length=30, default='На рассмотрении')
+    note = models.CharField(max_length=100,null=True, blank=True)# Заметка(где товар едет или в случае если товар задерживается)
 
     class Meta:
         ordering = ('-created',)
