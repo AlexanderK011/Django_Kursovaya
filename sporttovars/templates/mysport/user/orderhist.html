@@ -22,7 +22,7 @@
         <tr>
             <th>Заказ,№</th>
             <th>Дата заказа</th>
-            <th>Оплата</th>
+            <th>Статус</th>
         </tr>
         </thead>
         <tbody>
@@ -34,13 +34,8 @@
     {% if i.deny_buy %}
     <td data-label="Оплата">Заказ отменен</td>
     {% else %}
-{%if i.paid == False%}
+                    <td data-label="Статус">{{i.status}}</td>
 
-                    <td data-label="Оплата">Не оплачен</td>
-
-{%else%}
-<td data-label="Оплата">Оплачен</td>
-{%endif%}
 {%endif%}
                 </tr>
 

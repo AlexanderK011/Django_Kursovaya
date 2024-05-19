@@ -122,7 +122,7 @@ class User(AbstractUser):
     address = models.CharField(max_length=200, null=True)
     postal_index = models.CharField(max_length=20)
     city = models.CharField(max_length=35)
-    is_moder = models.BooleanField()
+    is_moder = models.BooleanField(default=False)
 
 class AnonymCustomer(models.Model):
     first_name = models.CharField(max_length=50)

@@ -407,7 +407,7 @@ def moder_order(request, id):
         if order.paid == 'True':
             paid = "Оплачен"
         else:
-            paid = "Оплачен"
+            paid = "Не оплачен"
         user_hist = OrderItem.objects.filter(order_id=id)
         total = 0
         for i in user_hist:
