@@ -32,6 +32,7 @@ urlpatterns = [
     path('polzov_soglas/',polzov_soglas, name='polzov_soglas'),
     path('one_tovar/<int:id>',one_tovar,name='tovar'),
     path('aboutus/',onas,name='about_us'),
+    path('economic/',economic,name='economic'),
     path('tovars/<str:name>/',tovars_brends, name='brend_tovars'),
     path('tovar/search/',search_tovars,name='search'),
     path('filter-products/<int:id>',filter_prod,name='filter_prod'),

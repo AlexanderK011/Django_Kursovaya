@@ -283,8 +283,13 @@ def onas(request):
         'menu':menu,
         'title': 'О нас'
     }
-
-    return render(request, 'mysport/onas.html',data)
+    return render(request, 'mysport/onas.html', data)
+def economic(request):
+    data={
+        'menu':menu,
+        'title':'Экономика таблица'
+    }
+    return render(request, 'mysport/economic_table.html',data)
 
 def reg(request):
     data = {
